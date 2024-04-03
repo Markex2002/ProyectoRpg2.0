@@ -4,22 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f982a518-22a9-4a18-b594-ec8e85cf8328" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Combate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Personajes/Clases/Arquero.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Personajes/Clases/Caballero.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Personajes/Clases/Guerrero.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Personajes/Clases/Mago.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Personajes/Enemigo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Personajes/Enemigos/DuendiLemon.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Personajes/Personaje.java" afterDir="false" />
+    <list default="true" id="f982a518-22a9-4a18-b594-ec8e85cf8328" name="Changes" comment="Continuar con el Sistema de Combate">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Combate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Combate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,8 +86,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1712132695566</updated>
-      <workItem from="1712132696631" duration="5949000" />
+      <workItem from="1712132696631" duration="7059000" />
     </task>
+    <task id="LOCAL-00001" summary="Continuar con el Sistema de Combate">
+      <option name="closed" value="true" />
+      <created>1712141679041</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1712141679041</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -107,5 +104,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Continuar con el Sistema de Combate" />
+    <option name="LAST_COMMIT_MESSAGE" value="Continuar con el Sistema de Combate" />
   </component>
 </project>

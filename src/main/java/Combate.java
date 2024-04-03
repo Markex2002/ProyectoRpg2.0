@@ -4,15 +4,17 @@ import Personajes.Personaje;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Combate <T>{
+public class Combate {
+    //ATRIBUTOS
     private List<Personaje> grupo = new ArrayList<>();
     private List<Enemigo> grupoEnemigo = new ArrayList<>();
 
-    private List<T> turnos = new ArrayList<>();
 
-
-
-
+    //CONSTRUCTOR
+    public Combate(List<Personaje> grupo, List<Enemigo> grupoEnemigo) {
+        this.grupo = grupo;
+        this.grupoEnemigo = grupoEnemigo;
+    }
 
     public void comenzarCombate(){
         do {
