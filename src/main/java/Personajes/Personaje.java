@@ -1,6 +1,8 @@
 package Personajes;
 
-public abstract class Personaje {
+import java.util.Comparator;
+
+public abstract class Personaje implements Comparator {
     //ATRIBUTOS
     String nombre;
 
@@ -11,13 +13,14 @@ public abstract class Personaje {
     int ataque;
     int magia;
     int armadura;
+    int velocidad;
 
     boolean se_defiende = false;
     boolean esta_muerto = false;
 
 
     //CONSTRUCTOR
-    public Personaje(String nombre,int max_ps, int max_pm, int ataque, int magia, int armadura) {
+    public Personaje(String nombre,int max_ps, int max_pm, int ataque, int magia, int armadura, int velocidad) {
         //Cuando creamos al personaje sus atributos deberian estar al maximo
         this.nombre = nombre;
         this.max_ps = max_ps;
@@ -27,6 +30,7 @@ public abstract class Personaje {
         this.ataque = ataque;
         this.magia = magia;
         this.armadura = armadura;
+        this.velocidad = velocidad;
     }
 
 
@@ -101,6 +105,12 @@ public abstract class Personaje {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    public int getVelocidad() {
+        return velocidad;
+    }
+    public void setVelocidad(int velocidad) {
+        this.velocidad = velocidad;
+    }
 
 
 
@@ -119,6 +129,15 @@ public abstract class Personaje {
         descripcion += "\nArmadura: " + armadura;
 
         return descripcion;
+    }
+
+
+    @Override
+    public int compare(Object o1, Object o2) {
+        Personaje p1 = (Personaje)o1;
+        Personaje p2 = (Personaje)o2;
+
+        return p2.velocidad - p1.velocidad;
     }
 
     public String menuCombate(){

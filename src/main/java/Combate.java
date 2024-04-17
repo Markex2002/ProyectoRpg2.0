@@ -25,6 +25,11 @@ public class Combate {
 
     //METODOS
     public void comenzarCombate(){
+
+
+
+
+
         do {
             mostrarEstadoGrupo();
 
@@ -175,7 +180,7 @@ public class Combate {
             } else {
                 System.out.println("Opcion no valida, intentalo de nuevo");
             }
-        }while (enemigoNoElegido);
+        } while (enemigoNoElegido);
 
         return eleccion;
     }
@@ -185,6 +190,7 @@ public class Combate {
     //MENUS Y DESCRIPCIONES
     //Metodo para mostrar el estado en mitad de combate
     public void mostrarEstadoGrupo(){
+        System.out.println();
         for (Personaje personaje : grupo){
             System.out.print(personaje.getNombre() + "\t\t\t");
         }

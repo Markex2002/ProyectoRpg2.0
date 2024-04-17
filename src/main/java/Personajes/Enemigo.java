@@ -13,13 +13,14 @@ public abstract class Enemigo {
     int ataque;
     int magia;
     int armadura;
+    int velocidad;
 
     boolean se_defiende = false;
     boolean esta_muerto = false;
 
 
     //CONSTRUCTOR
-    public Enemigo(String nombre, int max_ps, int max_pm, int ataque, int magia, int armadura) {
+    public Enemigo(String nombre, int max_ps, int max_pm, int ataque, int magia, int armadura, int velocidad) {
         //Cuando creamos al personaje sus atributos deberian estar al maximo
         this.nombre = nombre;
         this.max_ps = max_ps;
@@ -29,6 +30,7 @@ public abstract class Enemigo {
         this.ataque = ataque;
         this.magia = magia;
         this.armadura = armadura;
+        this.velocidad = velocidad;
     }
 
 
@@ -102,6 +104,15 @@ public abstract class Enemigo {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    public int getVelocidad() {
+        return velocidad;
+    }
+    public void setVelocidad(int velocidad) {
+        this.velocidad = velocidad;
+    }
+
+
+
 
     //METODOS//
     //---       MENUS       ---//
