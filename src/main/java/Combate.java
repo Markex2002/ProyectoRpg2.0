@@ -39,8 +39,8 @@ public class Combate {
 
                 //Comprobamos que el combate no haya acabado
                 if (!comprobarDerrota() && !comprobarVictoria()){
-                    boolean noHaActuado = false;
-                    int accion = 0;
+                    boolean noHaActuado;
+                    int accion;
                     //Al empezar su turno, deja de defenderse, en caso de que se estuviera defendiendo.
                     personaje.setSe_defiende(false);
                     System.out.println("\n" + personaje.getNombre() + " actua!");
@@ -111,6 +111,8 @@ public class Combate {
         return victoria;
     }
 
+
+
     // ---------------------------------------------------- //
     //SWITCH CON EL QUE REALIZAREMOS LA ACCION SELECCIONADA
     public boolean realizarAccion(int accion, Personaje personaje){
@@ -150,10 +152,9 @@ public class Combate {
     //Método que nos permitirá seleccionar a un Enemigo
     public int seleccionarEnemigo(){
         int contador = 0;
-        int eleccion = 0;
+        int eleccion;
         //Hacemos una lista en las que guardaremos las elecciones válidas
         List<Integer> eleccionesValidas = new ArrayList<>();
-        Enemigo enemigoSeleccionado = null;
 
         //Iteramos sobre el grupo enemigo para hacer un menu e imprimirlo
         for (Enemigo enemigo : grupoEnemigo){
