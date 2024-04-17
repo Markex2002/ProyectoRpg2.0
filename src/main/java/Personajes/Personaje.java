@@ -133,7 +133,39 @@ public abstract class Personaje {
 
 
     //---       METODOS DE COMBATE      ---//
-    public abstract int ataqueNormal();
-    public abstract int recibirAtaque(int damageReceived);
+    //Método para calcular el daño inflingido
+    public void ataqueNormal(Enemigo enemigo){
+        //Calculamos el daño infligido
+        int totalDamage = ataque - enemigo.armadura;
+        //Nos aseguramos de que el daño no sea menor que 0, porque entonces el enemigo se cura xD
+        if (totalDamage <= 0){
+            totalDamage = 0;
+        }
 
+        //Atacamos al enemigo y comprobamos si muere
+        enemigo.setPs(enemigo.getPs() - totalDamage);
+        System.out.println(enemigo.nombre + " recibe " + totalDamage + " de daño");
+
+        if (enemigo.getPs() <= 0){
+            enemigo.esta_muerto = true;
+            System.out.println(enemigo.nombre + " ha sido derrotado");
+        }
+
+        System.out.println(enemigo.getPs() + "Ps");
+    }
+
+    //Método para calcular el daño recibido
+    public void recibirAtaque(int damageReceived) {
+        int totaldamage = damageReceived - armadura;
+        int psLost = 0;
+
+        //Calculamos cuanto daño nos llevamos
+        if (se_defiende){
+            psLost = (int)(totaldamage / 2);
+            setPs(ps - psLost);
+        } else {
+            psLost = totaldamage;
+            setPs(ps - psLost);
+        }
+    }
 }

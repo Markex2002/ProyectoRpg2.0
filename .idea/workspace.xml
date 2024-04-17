@@ -8,6 +8,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Combate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Combate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Personajes/Clases/Arquero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Personajes/Clases/Arquero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Personajes/Clases/Caballero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Personajes/Clases/Caballero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Personajes/Clases/Guerrero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Personajes/Clases/Guerrero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Personajes/Clases/Mago.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Personajes/Clases/Mago.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Personajes/Personaje.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Personajes/Personaje.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,12 +29,24 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Markex2002"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Markex2002/ProyectoRpg2.0.git",
+    "accountId": "cc3e749e-4e39-4f44-8ab3-d1ac3a493d93"
+  }
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2eaBDxZSNnyjOoxiNMff12SOzdG" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -47,6 +64,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/marcom/Escritorio/ProyectoRpg2.0",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -78,6 +96,14 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -86,7 +112,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1712132695566</updated>
-      <workItem from="1712132696631" duration="7059000" />
+      <workItem from="1712132696631" duration="7080000" />
+      <workItem from="1713338263674" duration="7021000" />
     </task>
     <task id="LOCAL-00001" summary="Continuar con el Sistema de Combate">
       <option name="closed" value="true" />
@@ -96,7 +123,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712141679041</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Continuar con el Sistema de Combate">
+      <option name="closed" value="true" />
+      <created>1712141931105</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1712141931105</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
