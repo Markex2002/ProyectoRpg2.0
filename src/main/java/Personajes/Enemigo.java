@@ -1,5 +1,7 @@
 package Personajes;
 
+import java.util.List;
+
 public abstract class Enemigo {
     //ATRIBUTOS
     String nombre;
@@ -122,6 +124,48 @@ public abstract class Enemigo {
 
 
     //---       METODOS DE COMBATE      ---//
-    public abstract int ataqueNormal();
-    public abstract int recibirAtaque(int damageReceived);
+    public void ataqueNormal(List<Personaje> grupoPersonajes){
+        //Empezamos eligiendo a que personaje vamos a atacar
+        Personaje personaje = elegirAtaqueAlAzar(grupoPersonajes);
+
+        //Infligimos daño al personaje /////EN UN FUTURO CREAR UNA PROBABILIDAD DE ESQUIVE, FIJA O DINÁMICA
+        int damageBase = ataque - personaje.armadura;
+        int damageReceived = 0;
+        //Que no sea menor que 0
+        if (damageBase <= 0){
+            damageBase = 0;
+        }
+
+        //Nos fijamos en si el personaje se está defendiendo
+        if (personaje.isSe_defiende()){
+            personaje.setPs(personaje.getPs() - damageBase/2);
+            damageReceived = damageBase/2;
+        } else {
+            personaje.setPs(personaje.getPs() - damageBase);
+            damageReceived = damageBase;
+        }
+
+        System.out.println("\n" + nombre + " ataca a " + personaje.getNombre() + "!");
+        System.out.println(personaje.getNombre() + " recibe " + damageReceived + " de daño!");
+    }
+
+    //Metodo para atacar a un miembro aleatorio del grupo Aliado
+    public Personaje elegirAtaqueAlAzar(List<Personaje> grupoPersonajes){
+        //Hay que asegurarse de que no ataquen a un muerto
+        boolean haElegido = false;
+        Personaje personaje = null;
+        int eleccion = (int)(Math.random() * (grupoPersonajes.size()) + 0);
+
+        //Bucle hasta que se eliga al personaje
+        do {
+            //Miramos si esta muerto, si no, elegimos uno nuevo
+            if (!grupoPersonajes.get(eleccion).isEsta_muerto()){
+                haElegido = true;
+            } else {
+                eleccion = (int)(Math.random() * (grupoPersonajes.size()) + 0);
+            }
+        }while (!haElegido);
+
+        return grupoPersonajes.get(eleccion);
+    }
 }

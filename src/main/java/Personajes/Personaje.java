@@ -44,6 +44,7 @@ public abstract class Personaje {
     public void setPs(int ps) {
         if (ps < 0){
             this.ps = 0;
+            esta_muerto = true;
         } else {
             this.ps = ps;
         }
@@ -107,12 +108,11 @@ public abstract class Personaje {
     //---       MENUS       ---//
     @Override
     public String toString() {
-        String descripcion = "";
 
-        descripcion += nombre;
+        String descripcion = "\n" + nombre;
         descripcion += "\n--------------------";
 
-        descripcion += "\n\nPs: " + max_ps + " / " + ps;
+        descripcion += "\nPs: " + max_ps + " / " + ps;
         descripcion += "\nPm: " + max_pm + " / " + pm;
         descripcion += "\nAtaque: " + ataque;
         descripcion += "\nMagia: " + magia;
@@ -144,28 +144,11 @@ public abstract class Personaje {
 
         //Atacamos al enemigo y comprobamos si muere
         enemigo.setPs(enemigo.getPs() - totalDamage);
-        System.out.println(enemigo.nombre + " recibe " + totalDamage + " de daño");
+        System.out.println("\n" + enemigo.nombre + " recibe " + totalDamage + " de daño");
 
         if (enemigo.getPs() <= 0){
             enemigo.esta_muerto = true;
-            System.out.println(enemigo.nombre + " ha sido derrotado");
-        }
-
-        System.out.println(enemigo.getPs() + "Ps");
-    }
-
-    //Método para calcular el daño recibido
-    public void recibirAtaque(int damageReceived) {
-        int totaldamage = damageReceived - armadura;
-        int psLost = 0;
-
-        //Calculamos cuanto daño nos llevamos
-        if (se_defiende){
-            psLost = (int)(totaldamage / 2);
-            setPs(ps - psLost);
-        } else {
-            psLost = totaldamage;
-            setPs(ps - psLost);
+            System.out.println(enemigo.nombre + " ha sido derrotado\n");
         }
     }
 }

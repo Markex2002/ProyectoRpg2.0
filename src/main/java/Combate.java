@@ -7,10 +7,10 @@ import java.util.Scanner;
 
 public class Combate {
     //ATRIBUTOS
-    private List<Personaje> grupo = new ArrayList<>();
-    private List<Enemigo> grupoEnemigo = new ArrayList<>();
-    Scanner sc;
+    private final List<Personaje> grupo;
+    private final List<Enemigo> grupoEnemigo;
     int turno;
+    Scanner sc;
 
 
     //CONSTRUCTOR
@@ -26,6 +26,8 @@ public class Combate {
     //METODOS
     public void comenzarCombate(){
         do {
+            mostrarEstadoGrupo();
+
             turno++;
             System.out.println("\nEl combate Continua");
             System.out.println("Turno: " + turno);
@@ -39,6 +41,8 @@ public class Combate {
                 if (!comprobarDerrota() && !comprobarVictoria()){
                     boolean noHaActuado = false;
                     int accion = 0;
+                    //Al empezar su turno, deja de defenderse, en caso de que se estuviera defendiendo.
+                    personaje.setSe_defiende(false);
                     System.out.println("\n" + personaje.getNombre() + " actua!");
 
                     do {
@@ -48,9 +52,16 @@ public class Combate {
                     } while (!noHaActuado);
                 }
             }
+
+            //TURNO DE LOS ENEMIGOS
+            grupoEnemigo.get(0).ataqueNormal(grupo);
+            grupoEnemigo.get(1).ataqueNormal(grupo);
+            grupoEnemigo.get(2).ataqueNormal(grupo);
+
+
         } while (!comprobarDerrota() && !comprobarVictoria());
         //Mensajes de Victoria/Derrota
-        if (!comprobarDerrota()){
+        if (comprobarDerrota()){
             System.out.println("HAS PERDIDO");
         } else {
             System.out.println("HAS GANADO");
@@ -66,7 +77,7 @@ public class Combate {
 
 
 
-    //----CONDICIONES----//
+    //----CONDICIONES Y COMPROBACIONES----//
     public boolean comprobarDerrota(){
         boolean derrota = false;
         int contadorMuertes = 0;
@@ -119,6 +130,7 @@ public class Combate {
 
             case 3:
                 personaje.setSe_defiende(true);
+                System.out.println(personaje.getNombre() + " se defiende!");
                 break;
 
             case 4:
@@ -130,10 +142,8 @@ public class Combate {
                 haActuado = false;
                 break;
         }
-
         return haActuado;
     }
-
 
 
 
@@ -167,5 +177,28 @@ public class Combate {
         }while (enemigoNoElegido);
 
         return eleccion;
+    }
+
+
+
+    //MENUS Y DESCRIPCIONES
+    //Metodo para mostrar el estado en mitad de combate
+    public void mostrarEstadoGrupo(){
+        for (Personaje personaje : grupo){
+            System.out.print(personaje.getNombre() + "\t\t\t");
+        }
+        System.out.println();
+        for (Personaje personaje : grupo){
+            System.out.print("----------\t\t");
+        }
+        System.out.println();
+        for (Personaje personaje : grupo){
+            System.out.print(personaje.getPs() + " Ps\t\t\t");
+        }
+        System.out.println();
+        for (Personaje personaje : grupo){
+            System.out.print(personaje.getPm() + " Pm\t\t\t");
+        }
+        System.out.println();
     }
 }
