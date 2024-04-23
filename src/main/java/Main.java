@@ -12,8 +12,8 @@ public class Main {
 
         //CREACIÓN DE PERSONAJES
         Guerrero guerrero = new Guerrero("Marco", 100, 40, 60, 20, 30, 40);
-        Mago mago = new Mago("Cali", 100, 20, 20, 20, 10, 20);
-        Arquero arquero = new Arquero("Legolas", 100, 30, 80, 20, 20,60);
+        Mago mago = new Mago("Cali", 100, 20, 40, 20, 10, 20);
+        Arquero arquero = new Arquero("Legolas", 100, 30, 70, 20, 20,60);
         Caballero caballero = new Caballero("Edea", 100, 40, 80, 20, 45,10);
 
 
