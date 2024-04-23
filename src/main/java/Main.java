@@ -34,7 +34,7 @@ public class Main {
 
         //ORDENAMOS AL GRUPO POR VELOCIDAD
         //PORQUE ESTO ESTA FUNCIONANDO?????? PREGUNTAR EN CLASE
-        grupo.sort(guerrero);
+        grupo.sort(grupo.get(0));
 
 
         //CREACIÓN DE GRUPOS ENEMIGOS
