@@ -20,7 +20,7 @@ public abstract class Personaje implements Comparator {
 
 
     //CONSTRUCTOR
-    public Personaje(String nombre,int max_ps, int max_pm, int ataque, int magia, int armadura, int velocidad) {
+    public Personaje(String nombre, int max_ps, int max_pm, int ataque, int magia, int armadura, int velocidad) {
         //Cuando creamos al personaje sus atributos deberian estar al maximo
         this.nombre = nombre;
         this.max_ps = max_ps;
@@ -134,40 +134,9 @@ public abstract class Personaje implements Comparator {
 
     @Override
     public int compare(Object o1, Object o2) {
-        Personaje p1 = (Personaje)o1;
-        Personaje p2 = (Personaje)o2;
+        Personaje p1 = (Personaje) o1;
+        Personaje p2 = (Personaje) o2;
 
         return p2.velocidad - p1.velocidad;
-    }
-
-    public String menuCombate(){
-        String menu = "";
-
-        menu += "(1)Atacar\t(3)Defender";
-        menu += "\n(2)Habilidades\t(4)Objetos";
-
-        return menu;
-    }
-
-
-
-    //---       METODOS DE COMBATE      ---//
-    //Método para calcular el daño inflingido
-    public void ataqueNormal(Enemigo enemigo){
-        //Calculamos el daño infligido
-        int totalDamage = ataque - enemigo.armadura;
-        //Nos aseguramos de que el daño no sea menor que 0, porque entonces el enemigo se cura xD
-        if (totalDamage <= 0){
-            totalDamage = 0;
-        }
-
-        //Atacamos al enemigo y comprobamos si muere
-        enemigo.setPs(enemigo.getPs() - totalDamage);
-        System.out.println("\n" + enemigo.nombre + " recibe " + totalDamage + " de daño");
-
-        if (enemigo.getPs() <= 0){
-            enemigo.esta_muerto = true;
-            System.out.println(enemigo.nombre + " ha sido derrotado\n");
-        }
     }
 }

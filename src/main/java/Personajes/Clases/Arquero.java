@@ -1,8 +1,8 @@
 package Personajes.Clases;
 
-import Personajes.Personaje;
+import Personajes.Aliado;
 
-public class Arquero extends Personaje{
+public class Arquero extends Aliado {
     //ATRIBUTOS
 
     //CONSTRUCTOR

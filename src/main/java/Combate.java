@@ -1,4 +1,5 @@
 import Personajes.Enemigo;
+import Personajes.Aliado;
 import Personajes.Personaje;
 
 import java.util.ArrayList;
@@ -7,29 +8,31 @@ import java.util.Scanner;
 
 public class Combate {
     //ATRIBUTOS
-    private final List<Personaje> grupo;
+    private final List<Aliado> grupoAliado;
     private final List<Enemigo> grupoEnemigo;
+    private final List<Personaje> ordenacionTurnos;
     int turno;
     Scanner sc;
 
 
     //CONSTRUCTOR
-    public Combate(List<Personaje> grupo, List<Enemigo> grupoEnemigo) {
-        //Inicializamos los datos de este combate
-        this.grupo = grupo;
-        this.grupoEnemigo = grupoEnemigo;
+    public Combate(List<Aliado> grupoAliado, List<Enemigo> grupoEnemigo) {
         sc = new Scanner(System.in);
         turno = 0;
+        //Inicializamos los datos de este combate
+        this.grupoAliado = grupoAliado;
+        this.grupoEnemigo = grupoEnemigo;
+        //Creamos una lista con los turnos que se usaran en combate
+        this.ordenacionTurnos = new ArrayList<>();
+        ordenacionTurnos.addAll(grupoAliado);
+        ordenacionTurnos.addAll(grupoEnemigo);
+        //ORDENAMOS LOS TURNOS, SE PUEDE HACER MEJOR????
+        ordenacionTurnos.sort(ordenacionTurnos.get(0));
     }
 
 
     //METODOS
     public void comenzarCombate(){
-
-
-
-
-
         do {
             mostrarEstadoGrupo();
 
@@ -37,33 +40,41 @@ public class Combate {
             System.out.println("\nEl combate Continua");
             System.out.println("Turno: " + turno);
 
-            //Iteramos sobre cada uno de los personajes para que actuen
-            for (Personaje personaje : grupo){
-                //EL PROBLEMA DE ESTE SISTEMA ES QUE SIGUE CORRIENDO AUNQUE HAYA ACABADO EL COMBATE;
-                // DE MOMENTO NO DEBERÍA SER UN PROBLEMA
 
+            //NUEVO METODO, ITERAMOS SOBRE TODOS PARA PODER USAR EL SISTEMA DE VELOCIDADES Y TURNOS
+            for(Personaje personaje : ordenacionTurnos){
                 //Comprobamos que el combate no haya acabado
-                if (!comprobarDerrota() && !comprobarVictoria()){
-                    boolean noHaActuado;
-                    int accion;
-                    //Al empezar su turno, deja de defenderse, en caso de que se estuviera defendiendo.
-                    personaje.setSe_defiende(false);
-                    System.out.println("\n" + personaje.getNombre() + " actua!");
+                if (!comprobarDerrota() && !comprobarVictoria()) {
+                    //Comprobamos tambien que el personaje no este Muerto
+                    if (!personaje.isEsta_muerto()){
+                        //CASO ALIADO
+                        if (personaje instanceof Aliado aliado) {
+                            boolean noHaActuado;
+                            int accion;
+                            //Al empezar su turno, deja de defenderse, en caso de que se estuviera defendiendo.
+                            aliado.setSe_defiende(false);
+                            System.out.println("\n" + aliado.getNombre() + " actua!");
 
-                    do {
-                        System.out.println(personaje.menuCombate());
-                        accion = sc.nextInt();
-                        noHaActuado = realizarAccion(accion, personaje);
-                    } while (!noHaActuado);
+                            //Hasta que no hayamos actuado no nos salimos del bucle
+                            do {
+                                System.out.println(aliado.menuCombate());
+                                accion = sc.nextInt();
+                                noHaActuado = realizarAccion(accion, aliado);
+                            } while (!noHaActuado);
+                        }
+                        //CASO ENEMIGO
+                        else if (personaje instanceof Enemigo enemigo) {
+                            enemigo.setSe_defiende(false);
+                            enemigo.ataqueNormal(grupoAliado);
+                        }
+                    }
                 }
+
+                //DE MOMENTO ESTO FALLA, CONTROLAR MUERTES MEDIANTE CONDICIONALES
+                //Controlamos que, en el caso de que haya muerto alguien al
+                //final del turno de este personaje, sacarle de la lista de Turnos mediante el uso de Lambdas o Streams
+                //ordenacionTurnos.removeIf(Personaje::isEsta_muerto);
             }
-
-            //TURNO DE LOS ENEMIGOS
-            grupoEnemigo.get(0).ataqueNormal(grupo);
-            grupoEnemigo.get(1).ataqueNormal(grupo);
-            grupoEnemigo.get(2).ataqueNormal(grupo);
-
-
         } while (!comprobarDerrota() && !comprobarVictoria());
         //Mensajes de Victoria/Derrota
         if (comprobarDerrota()){
@@ -88,13 +99,13 @@ public class Combate {
         int contadorMuertes = 0;
 
         //Contamos cuantos miembros del grupo han muerto
-        for (Personaje personaje : grupo){
-            if (personaje.isEsta_muerto()){
+        for (Aliado aliado : grupoAliado){
+            if (aliado.isEsta_muerto()){
                 contadorMuertes++;
             }
         }
         //Vemos si todos han muerto
-        if (contadorMuertes == grupo.size()){
+        if (contadorMuertes == grupoAliado.size()){
             derrota = true;
         }
         return derrota;
@@ -120,7 +131,7 @@ public class Combate {
 
     // ---------------------------------------------------- //
     //SWITCH CON EL QUE REALIZAREMOS LA ACCION SELECCIONADA
-    public boolean realizarAccion(int accion, Personaje personaje){
+    public boolean realizarAccion(int accion, Aliado aliado){
         boolean haActuado = true;
 
         switch (accion){
@@ -128,7 +139,7 @@ public class Combate {
             case 1:
                 System.out.println("\n¿A quien quieres atacar?");
                 //Seleccionamos al enemigo y atacamos
-                personaje.ataqueNormal(grupoEnemigo.get(seleccionarEnemigo()));
+                aliado.ataqueNormal(grupoEnemigo.get(seleccionarEnemigo()));
                 break;
 
             case 2:
@@ -136,8 +147,8 @@ public class Combate {
                 break;
 
             case 3:
-                personaje.setSe_defiende(true);
-                System.out.println(personaje.getNombre() + " se defiende!");
+                aliado.setSe_defiende(true);
+                System.out.println(aliado.getNombre() + " se defiende!");
                 break;
 
             case 4:
@@ -191,20 +202,20 @@ public class Combate {
     //Metodo para mostrar el estado en mitad de combate
     public void mostrarEstadoGrupo(){
         System.out.println();
-        for (Personaje personaje : grupo){
-            System.out.print(personaje.getNombre() + "\t\t\t");
+        for (Aliado aliado : grupoAliado){
+            System.out.print(aliado.getNombre() + "\t\t\t");
         }
         System.out.println();
-        for (Personaje personaje : grupo){
+        for (Aliado aliado : grupoAliado){
             System.out.print("----------\t\t");
         }
         System.out.println();
-        for (Personaje personaje : grupo){
-            System.out.print(personaje.getPs() + " Ps\t\t\t");
+        for (Aliado aliado : grupoAliado){
+            System.out.print(aliado.getPs() + " Ps\t\t\t");
         }
         System.out.println();
-        for (Personaje personaje : grupo){
-            System.out.print(personaje.getPm() + " Pm\t\t\t");
+        for (Aliado aliado : grupoAliado){
+            System.out.print(aliado.getPm() + " Pm\t\t\t");
         }
         System.out.println();
     }

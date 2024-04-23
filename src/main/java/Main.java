@@ -1,4 +1,4 @@
-import Personajes.Personaje;
+import Personajes.Aliado;
 import Personajes.Clases.*;
 import Personajes.Enemigo;
 import Personajes.Enemigos.*;
@@ -12,20 +12,20 @@ public class Main {
 
         //CREACIÓN DE PERSONAJES
         Guerrero guerrero = new Guerrero("Marco", 100, 40, 60, 20, 30, 40);
-        Mago mago = new Mago("Cali", 100, 20, 20, 20, 0, 20);
-        Arquero arquero = new Arquero("Legolas", 100, 30, 80, 20, 10,60);
-        Caballero caballero = new Caballero("Edea", 100, 40, 80, 20, 50,10);
+        Mago mago = new Mago("Cali", 100, 20, 20, 20, 10, 20);
+        Arquero arquero = new Arquero("Legolas", 100, 30, 80, 20, 20,60);
+        Caballero caballero = new Caballero("Edea", 100, 40, 80, 20, 45,10);
 
 
         //ENEMIGOS
-        DuendiLemon duendiLemon1 = new DuendiLemon("DuendiLemon A", 100, 20, 50, 20, 20, 30);
+        DuendiLemon duendiLemon1 = new DuendiLemon("DuendiLemon A", 100, 20, 50, 20, 20, 50);
         DuendiLemon duendiLemon2 = new DuendiLemon("DuendiLemon B", 100, 20, 50, 20, 20, 30);
-        DuendiLemon duendiLemon3 = new DuendiLemon("DuendiLemon C", 100, 20, 50, 20, 20, 30);
+        DuendiLemon duendiLemon3 = new DuendiLemon("DuendiLemon C", 100, 20, 50, 20, 20, 5);
 
 
         //CREACIÓN DEL GRUPO
         //Este grupo está compuesto por clases que heredan de la clase Personaje
-        List<Personaje> grupo = new ArrayList<>();
+        List<Aliado> grupo = new ArrayList<>();
         grupo.add(guerrero);
         grupo.add(mago);
         grupo.add(arquero);
@@ -50,7 +50,6 @@ public class Main {
         Combate combate = new Combate(grupo, grupoEnemigo1);
         //Comenzamos el combate
         combate.comenzarCombate();
-
 
 
 

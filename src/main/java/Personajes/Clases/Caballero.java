@@ -1,8 +1,8 @@
 package Personajes.Clases;
 
-import Personajes.Personaje;
+import Personajes.Aliado;
 
-public class Caballero extends Personaje{
+public class Caballero extends Aliado {
     //ATRIBUTOS
 
     //CONSTRUCTOR
