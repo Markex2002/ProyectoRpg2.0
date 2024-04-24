@@ -63,4 +63,9 @@ public class Enemigo extends Personaje {
 
         return grupoAliados.get(eleccion);
     }
+
+    @Override
+    public int compareTo(Personaje o) {
+        return 0;
+    }
 }

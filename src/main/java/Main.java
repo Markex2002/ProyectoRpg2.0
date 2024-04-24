@@ -1,3 +1,6 @@
+import Inventario.Bolsa;
+import Inventario.ObjetosCombate.Pocion;
+import Inventario.ObjetosCombate.SuperPocion;
 import Personajes.Aliado;
 import Personajes.Clases.*;
 import Personajes.Enemigo;
@@ -9,6 +12,16 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args){
+        //CREACION DE BOLSAS
+        Bolsa bolsa = new Bolsa();
+        Pocion pocion = new Pocion(3);
+        bolsa.addObject(pocion);
+        SuperPocion superPocion = new SuperPocion(3);
+        bolsa.addObject(superPocion);
+        Pocion pocion2 = new Pocion(5);
+        bolsa.addObject(pocion2);
+        System.out.println(bolsa.toString());
+
 
         //CREACIÓN DE PERSONAJES
         Guerrero guerrero = new Guerrero("Marco", 100, 40, 60, 20, 30, 40);
@@ -32,11 +45,6 @@ public class Main {
         grupo.add(caballero);
 
 
-        //ORDENAMOS AL GRUPO POR VELOCIDAD
-        //PORQUE ESTO ESTA FUNCIONANDO?????? PREGUNTAR EN CLASE
-        grupo.sort(grupo.get(0));
-
-
         //CREACIÓN DE GRUPOS ENEMIGOS
         //Este grupo está compuesto por clases que heredan de Enemigo
         List<Enemigo> grupoEnemigo1 = new ArrayList<>();
@@ -47,7 +55,7 @@ public class Main {
 
         //COMBATES
         //Creamos el combate con ambos grupos
-        Combate combate = new Combate(grupo, grupoEnemigo1);
+        Combate combate = new Combate(grupo, grupoEnemigo1, bolsa);
         //Comenzamos el combate
         combate.comenzarCombate();
 

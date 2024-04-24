@@ -1,33 +1,31 @@
+import Inventario.Bolsa;
 import Personajes.Enemigo;
 import Personajes.Aliado;
 import Personajes.Personaje;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Combate {
     //ATRIBUTOS
     private final List<Aliado> grupoAliado;
     private final List<Enemigo> grupoEnemigo;
-    private final List<Personaje> ordenacionTurnos;
+    private final Set<Personaje> ordenacionTurnos;
+    private Bolsa bolsa;
     int turno;
     Scanner sc;
 
 
     //CONSTRUCTOR
-    public Combate(List<Aliado> grupoAliado, List<Enemigo> grupoEnemigo) {
+    public Combate(List<Aliado> grupoAliado, List<Enemigo> grupoEnemigo, Bolsa bolsa) {
         sc = new Scanner(System.in);
         turno = 0;
         //Inicializamos los datos de este combate
         this.grupoAliado = grupoAliado;
         this.grupoEnemigo = grupoEnemigo;
         //Creamos una lista con los turnos que se usaran en combate
-        this.ordenacionTurnos = new ArrayList<>();
+        this.ordenacionTurnos = new TreeSet<>((o1, o2) ->  o2.getVelocidad() - o1.getVelocidad());
         ordenacionTurnos.addAll(grupoAliado);
         ordenacionTurnos.addAll(grupoEnemigo);
-        //ORDENAMOS LOS TURNOS, SE PUEDE HACER MEJOR????
-        ordenacionTurnos.sort(ordenacionTurnos.get(0));
     }
 
 

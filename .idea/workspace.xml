@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f982a518-22a9-4a18-b594-ec8e85cf8328" name="Changes" comment="Actualizacion Proyecto">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Inventario/Bolsa.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Inventario/Objeto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Inventario/ObjetosCombate/Pocion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Inventario/ObjetosCombate/SuperPocion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Combate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Combate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Personajes/Aliado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Personajes/Aliado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Personajes/Enemigo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Personajes/Enemigo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Personajes/Personaje.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Personajes/Personaje.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +81,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Inventario.ObjetosCombate" />
       <recent name="Personajes.Clases" />
     </key>
   </component>
@@ -109,7 +119,10 @@
       <workItem from="1713338263674" duration="12580000" />
       <workItem from="1713352767194" duration="3018000" />
       <workItem from="1713863660537" duration="53000" />
-      <workItem from="1713867374576" duration="3450000" />
+      <workItem from="1713867374576" duration="4091000" />
+      <workItem from="1713875842100" duration="9000" />
+      <workItem from="1713939193284" duration="4447000" />
+      <workItem from="1713953207255" duration="3656000" />
     </task>
     <task id="LOCAL-00001" summary="Continuar con el Sistema de Combate">
       <option name="closed" value="true" />
@@ -175,7 +188,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713870622842</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Actualizacion Proyecto">
+      <option name="closed" value="true" />
+      <created>1713870841275</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1713870841275</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

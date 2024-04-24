@@ -2,7 +2,7 @@ package Personajes;
 
 import java.util.Comparator;
 
-public class Aliado extends Personaje implements Comparator {
+public class Aliado extends Personaje{
     //ATRIBUTOS
 
 

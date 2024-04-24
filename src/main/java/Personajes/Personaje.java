@@ -2,21 +2,21 @@ package Personajes;
 
 import java.util.Comparator;
 
-public abstract class Personaje implements Comparator {
+public class Personaje implements Comparable<Personaje> {
     //ATRIBUTOS
     String nombre;
 
-    int max_ps;
-    int ps;
-    int max_pm;
-    int pm;
-    int ataque;
-    int magia;
-    int armadura;
-    int velocidad;
+    protected int max_ps;
+    protected int ps;
+    protected int max_pm;
+    protected int pm;
+    protected int ataque;
+    protected int magia;
+    protected int armadura;
+    protected int velocidad;
 
-    boolean se_defiende = false;
-    boolean esta_muerto = false;
+    protected boolean se_defiende = false;
+    protected boolean esta_muerto = false;
 
 
     //CONSTRUCTOR
@@ -49,6 +49,8 @@ public abstract class Personaje implements Comparator {
         if (ps < 0){
             this.ps = 0;
             esta_muerto = true;
+        } else if (ps > max_ps) {
+            this.ps = max_ps;
         } else {
             this.ps = ps;
         }
@@ -133,10 +135,7 @@ public abstract class Personaje implements Comparator {
 
 
     @Override
-    public int compare(Object o1, Object o2) {
-        Personaje p1 = (Personaje) o1;
-        Personaje p2 = (Personaje) o2;
-
-        return p2.velocidad - p1.velocidad;
+    public int compareTo(Personaje o) {
+        return  o.velocidad - this.velocidad;
     }
 }
