@@ -14,12 +14,11 @@ public class Main {
     public static void main(String[] args){
         //CREACION DE BOLSAS
         Bolsa bolsa = new Bolsa();
-        Pocion pocion = new Pocion(3);
-        bolsa.addObject(pocion);
-        SuperPocion superPocion = new SuperPocion(3);
-        bolsa.addObject(superPocion);
-        Pocion pocion2 = new Pocion(5);
-        bolsa.addObject(pocion2);
+
+        //INSTANCIAMOS EL OBJETO EN EL MISMO MOMENTO, ASI EVITAMOS CREAR MUCHAS CLASES IGUALES
+        bolsa.addObject(new Pocion(5));
+        bolsa.addObject(new SuperPocion(3));
+        bolsa.addObject(new Pocion(10));
         System.out.println(bolsa.toString());
 
 

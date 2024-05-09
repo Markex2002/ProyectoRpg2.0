@@ -26,9 +26,11 @@ public class Bolsa {
     @Override
     public String toString() {
         String resultado = "";
+        int contador = 0;
         //Miramos cuantos objetos tenemos en el inventario
         for (Objeto objeto : inventario) {
-            System.out.println(objeto.getNombre() + " x" + objeto.cantidad);
+            System.out.println("(" + contador + ")" + objeto.getNombre() + " x" + objeto.cantidad);
+            contador++;
         }
         return resultado;
     }

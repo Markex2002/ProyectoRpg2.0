@@ -36,5 +36,5 @@ public abstract class Objeto {
 
     //Metodos
     public abstract String descripcionObjeto();
-    public abstract void usarObjeto(Personaje personaje);
+    public abstract boolean usarObjeto(Personaje personaje);
 }

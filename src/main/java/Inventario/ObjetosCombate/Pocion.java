@@ -24,7 +24,16 @@ public class Pocion extends Objeto {
     }
 
     @Override
-    public void usarObjeto(Personaje personaje) {
-        personaje.setPs(personaje.getPs() + psRestaurados);
+    public boolean usarObjeto(Personaje personaje) {
+        boolean seHaUsado = false;
+
+        //Comprobamos que se pueda usar la pocion
+        if ((personaje.isEsta_muerto()) || (personaje.getPs() == personaje.getMax_ps())){
+            System.out.println("Esto no tendría sentido");
+        } else {
+            personaje.setPs(personaje.getPs() + psRestaurados);
+            seHaUsado = true;
+        }
+        return seHaUsado;
     }
 }

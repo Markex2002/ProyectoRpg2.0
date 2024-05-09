@@ -10,7 +10,8 @@ public class Combate {
     private final List<Aliado> grupoAliado;
     private final List<Enemigo> grupoEnemigo;
     private final Set<Personaje> ordenacionTurnos;
-    private Bolsa bolsa;
+    //DARLE FINAL A BOLSA PODRIA DAR PROBLEMAS, ESTAR ATENTO
+    private final Bolsa bolsa;
     int turno;
     Scanner sc;
 
@@ -22,6 +23,7 @@ public class Combate {
         //Inicializamos los datos de este combate
         this.grupoAliado = grupoAliado;
         this.grupoEnemigo = grupoEnemigo;
+        this.bolsa = bolsa;
         //Creamos una lista con los turnos que se usaran en combate
         this.ordenacionTurnos = new TreeSet<>((o1, o2) ->  o2.getVelocidad() - o1.getVelocidad());
         ordenacionTurnos.addAll(grupoAliado);
@@ -150,7 +152,8 @@ public class Combate {
                 break;
 
             case 4:
-                System.out.println("Se abre menu de Objetos");
+                //Usamos un objeto
+                aliado.usarObjeto(grupoAliado, bolsa, sc);
                 break;
 
             default:

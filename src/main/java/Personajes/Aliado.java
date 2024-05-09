@@ -1,10 +1,12 @@
 package Personajes;
 
-import java.util.Comparator;
+import Inventario.Bolsa;
+
+import java.util.List;
+import java.util.Scanner;
 
 public class Aliado extends Personaje{
     //ATRIBUTOS
-
 
     //CONSTRUCTOR
     public Aliado(String nombre, int max_ps, int max_pm, int ataque, int magia, int armadura, int velocidad) {
@@ -21,6 +23,30 @@ public class Aliado extends Personaje{
         menu += "\n(2)Habilidades\t(4)Objetos";
 
         return menu;
+    }
+
+    public void usarObjeto(List<Aliado> grupoAliado, Bolsa bolsa, Scanner sc){
+        boolean objetoUsado = false;
+
+        //Hasta que no hayamos usado el objeto
+        do {
+            System.out.println(bolsa.toString());
+            int numObjeto = sc.nextInt();
+            int contador = 0;
+
+            System.out.println("¿Con que Aliado quieres usarlo?");
+            for (int i = 0; i < grupoAliado.size(); i++) {
+                System.out.println("(" + i + ")" + grupoAliado.get(i).getNombre()
+                    + ": " + grupoAliado.get(i).getPs() + " / "
+                        + grupoAliado.get(i).getMax_ps() + "ps"
+                );
+            }
+
+            int numAliado = sc.nextInt();
+
+            //Usamos el objeto o No, dependiendo de si se cumplen las condiciones
+            objetoUsado = bolsa.getInventario().get(numObjeto).usarObjeto(grupoAliado.get(numAliado));
+        } while (!objetoUsado);
     }
 
 
