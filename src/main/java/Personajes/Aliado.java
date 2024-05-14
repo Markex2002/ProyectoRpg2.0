@@ -30,8 +30,13 @@ public class Aliado extends Personaje{
 
         //Hasta que no hayamos usado el objeto
         do {
-            System.out.println(bolsa.toString());
-            int numObjeto = sc.nextInt();
+            int numObjeto = 0;
+            do{
+                System.out.println(bolsa.toString());
+                numObjeto = sc.nextInt();
+
+            } while ((numObjeto < 0) || (numObjeto > bolsa.getInventario().size() - 1));
+
             int contador = 0;
 
             System.out.println("¿Con que Aliado quieres usarlo?");
