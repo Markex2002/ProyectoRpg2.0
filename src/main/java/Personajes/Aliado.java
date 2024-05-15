@@ -7,10 +7,15 @@ import java.util.Scanner;
 
 public class Aliado extends Personaje{
     //ATRIBUTOS
+    private int exp;
+    private int xpGoal;
+    private int level;
 
     //CONSTRUCTOR
     public Aliado(String nombre, int max_ps, int max_pm, int ataque, int magia, int armadura, int velocidad) {
         super(nombre, max_ps, max_pm, ataque, magia, armadura, velocidad);
+        xpGoal = 100;
+        level = 1;
     }
 
 
@@ -72,7 +77,8 @@ public class Aliado extends Personaje{
     //Método para calcular el daño inflingido
     public void ataqueNormal(Enemigo enemigo){
         //Calculamos el daño infligido
-        int totalDamage = ataque - enemigo.armadura;
+        double randomValue = ((Math.random() * (110 - 90) + 90)) / 100;
+        int totalDamage =(int)((ataque/2 - enemigo.armadura/4) * randomValue);
         //Nos aseguramos de que el daño no sea menor que 0, porque entonces el enemigo se cura xD
         if (totalDamage <= 0){
             totalDamage = 0;

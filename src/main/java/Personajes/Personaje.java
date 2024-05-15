@@ -1,7 +1,5 @@
 package Personajes;
 
-import java.util.Comparator;
-
 public class Personaje implements Comparable<Personaje> {
     //ATRIBUTOS
     String nombre;
@@ -21,7 +19,7 @@ public class Personaje implements Comparable<Personaje> {
 
     //CONSTRUCTOR
     public Personaje(String nombre, int max_ps, int max_pm, int ataque, int magia, int armadura, int velocidad) {
-        //Cuando creamos al personaje sus atributos deberian estar al maximo
+        //Cuando creamos al personaje sus atributos deberían estar al máximo
         this.nombre = nombre;
         this.max_ps = max_ps;
         this.ps = max_ps;
@@ -49,11 +47,7 @@ public class Personaje implements Comparable<Personaje> {
         if (ps < 0){
             this.ps = 0;
             esta_muerto = true;
-        } else if (ps > max_ps) {
-            this.ps = max_ps;
-        } else {
-            this.ps = ps;
-        }
+        } else this.ps = Math.min(ps, max_ps);
     }
     public int getMax_pm() {
         return max_pm;
@@ -65,11 +59,7 @@ public class Personaje implements Comparable<Personaje> {
         return pm;
     }
     public void setPm(int pm) {
-        if (pm < 0){
-            this.pm = 0;
-        } else {
-            this.pm = pm;
-        }
+        this.pm = Math.max(pm, 0);
     }
     public int getAtaque() {
         return ataque;
@@ -116,7 +106,7 @@ public class Personaje implements Comparable<Personaje> {
 
 
 
-    //METODOS//
+    //MÉTODOS//
     //---       MENUS       ---//
     @Override
     public String toString() {

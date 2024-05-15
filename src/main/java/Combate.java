@@ -10,7 +10,7 @@ public class Combate {
     private final List<Aliado> grupoAliado;
     private final List<Enemigo> grupoEnemigo;
     private final Set<Personaje> ordenacionTurnos;
-    //DARLE FINAL A BOLSA PODRIA DAR PROBLEMAS, ESTAR ATENTO
+    //DARLE FINAL A BOLSA PODRÍA DAR PROBLEMAS, ESTAR ATENTO
     private final Bolsa bolsa;
     int turno;
     Scanner sc;
@@ -45,7 +45,7 @@ public class Combate {
             for(Personaje personaje : ordenacionTurnos){
                 //Comprobamos que el combate no haya acabado
                 if (!comprobarDerrota() && !comprobarVictoria()) {
-                    //Comprobamos tambien que el personaje no este Muerto
+                    //Comprobamos también que el personaje no este Muerto
                     if (!personaje.isEsta_muerto()){
                         //CASO ALIADO
                         if (personaje instanceof Aliado aliado) {
@@ -154,6 +154,8 @@ public class Combate {
             case 4:
                 //Usamos un objeto
                 haActuado = aliado.usarObjeto(grupoAliado, bolsa, sc);
+                //Comprobamos si hay que eliminar algún Objeto del inventario
+                bolsa.comprobarCantidadObjetos();
                 break;
 
             default:

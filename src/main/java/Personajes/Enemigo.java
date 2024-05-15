@@ -20,12 +20,13 @@ public class Enemigo extends Personaje {
     //METODOS//
     //---       METODOS DE COMBATE      ---//
     public void ataqueNormal(List<Aliado> grupoAliados){
-        //Empezamos eligiendo a que personaje vamos a atacar
+        //Empezamos eligiendo a qué personaje vamos a atacar
         Aliado aliado = elegirObjetivoAlAzar(grupoAliados);
 
         //Infligimos daño al personaje /////EN UN FUTURO CREAR UNA PROBABILIDAD DE ESQUIVE, FIJA O DINÁMICA
-        int damageBase = ataque - aliado.armadura;
-        int damageReceived = 0;
+        double randomValue = ((Math.random() * (110 - 90) + 90)) / 100;
+        int damageBase =(int)((ataque/2 - aliado.armadura/4) * randomValue);
+        int damageReceived;
         //Que no sea menor que 0
         if (damageBase <= 0){
             damageBase = 0;
@@ -48,7 +49,6 @@ public class Enemigo extends Personaje {
     public Aliado elegirObjetivoAlAzar(List<Aliado> grupoAliados){
         //Hay que asegurarse de que no ataquen a un muerto
         boolean haElegido = false;
-        Aliado aliado = null;
         int eleccion = (int)(Math.random() * (grupoAliados.size()) + 0);
 
         //Bucle hasta que se eliga al personaje

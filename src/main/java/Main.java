@@ -1,4 +1,5 @@
 import Inventario.Bolsa;
+import Inventario.ObjetosCombate.PlumaFenix;
 import Inventario.ObjetosCombate.Pocion;
 import Inventario.ObjetosCombate.SuperPocion;
 import Personajes.Aliado;
@@ -16,10 +17,10 @@ public class Main {
         Bolsa bolsa = new Bolsa();
 
         //INSTANCIAMOS EL OBJETO EN EL MISMO MOMENTO, ASI EVITAMOS CREAR MUCHAS CLASES IGUALES
-        bolsa.addObject(new Pocion(5));
-        bolsa.addObject(new SuperPocion(3));
-        bolsa.addObject(new Pocion(10));
-        System.out.println(bolsa.toString());
+        bolsa.addObject(new Pocion(1));
+        bolsa.addObject(new SuperPocion(2));
+        bolsa.addObject(new Pocion(2));
+        bolsa.addObject(new PlumaFenix(3));
 
 
         //CREACIÓN DE PERSONAJES
@@ -57,8 +58,6 @@ public class Main {
         Combate combate = new Combate(grupo, grupoEnemigo1, bolsa);
         //Comenzamos el combate
         combate.comenzarCombate();
-
-
 
     }
 }
