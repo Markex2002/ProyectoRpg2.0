@@ -153,7 +153,7 @@ public class Combate {
 
             case 4:
                 //Usamos un objeto
-                aliado.usarObjeto(grupoAliado, bolsa, sc);
+                haActuado = aliado.usarObjeto(grupoAliado, bolsa, sc);
                 break;
 
             default:

@@ -25,33 +25,45 @@ public class Aliado extends Personaje{
         return menu;
     }
 
-    public void usarObjeto(List<Aliado> grupoAliado, Bolsa bolsa, Scanner sc){
-        boolean objetoUsado = false;
+    //Metodo que permitira a los aliados usar Objetos en Batalla
+    public boolean usarObjeto(List<Aliado> grupoAliado, Bolsa bolsa, Scanner sc){
+        boolean eleccionTomada;
+        boolean seHaActuado = true;
 
-        //Hasta que no hayamos usado el objeto
+        //Hasta que no hayamos usado el objeto, o le hayamos dado a Salir, se mantiene el bucle
         do {
-            int numObjeto = 0;
+            int numObjeto;
+            //Mostramos las opciones y Objetos y no salimos hasta que elijamos
             do{
+                System.out.println("\n(-1) Salir");
                 System.out.println(bolsa.toString());
                 numObjeto = sc.nextInt();
 
-            } while ((numObjeto < 0) || (numObjeto > bolsa.getInventario().size() - 1));
+            } while ((numObjeto < -1) || (numObjeto > bolsa.getInventario().size() - 1));
 
-            int contador = 0;
 
-            System.out.println("¿Con que Aliado quieres usarlo?");
-            for (int i = 0; i < grupoAliado.size(); i++) {
-                System.out.println("(" + i + ")" + grupoAliado.get(i).getNombre()
-                    + ": " + grupoAliado.get(i).getPs() + " / "
-                        + grupoAliado.get(i).getMax_ps() + "ps"
-                );
+            //Elegimos a que aliado que aliado vamos a dar el objeto
+            if (numObjeto >= 0){
+                System.out.println("¿Con que Aliado quieres usarlo?");
+                for (int i = 0; i < grupoAliado.size(); i++) {
+                    System.out.println("(" + i + ")" + grupoAliado.get(i).getNombre()
+                            + ": " + grupoAliado.get(i).getPs() + " / "
+                            + grupoAliado.get(i).getMax_ps() + "ps"
+                    );
+                }
+
+                int numAliado = sc.nextInt();
+
+                //Usamos el objeto o No, dependiendo de si se cumplen las condiciones
+                eleccionTomada = bolsa.getInventario().get(numObjeto).usarObjeto(grupoAliado.get(numAliado));
+            }else{
+                //Condicion de salir, No hemos actuado, pero salimos del bucle
+                eleccionTomada = true;
+                seHaActuado = false;
             }
+        } while (!eleccionTomada);
 
-            int numAliado = sc.nextInt();
-
-            //Usamos el objeto o No, dependiendo de si se cumplen las condiciones
-            objetoUsado = bolsa.getInventario().get(numObjeto).usarObjeto(grupoAliado.get(numAliado));
-        } while (!objetoUsado);
+        return seHaActuado;
     }
 
 
