@@ -44,9 +44,10 @@ public class Personaje implements Comparable<Personaje> {
         return ps;
     }
     public void setPs(int ps) {
-        if (ps < 0){
+        if (ps <= 0){
             this.ps = 0;
             esta_muerto = true;
+            System.out.println(nombre + " ha caido!");
         } else this.ps = Math.min(ps, max_ps);
     }
     public int getMax_pm() {
