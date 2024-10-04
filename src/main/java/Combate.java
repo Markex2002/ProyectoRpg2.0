@@ -209,7 +209,7 @@ public class Combate {
             System.out.print(aliado.getNombre() + "\t\t\t");
         }
         System.out.println();
-        for (Aliado aliado : grupoAliado){
+        for (@SuppressWarnings("unused") Aliado aliado : grupoAliado){
             System.out.print("----------\t\t");
         }
         System.out.println();

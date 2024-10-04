@@ -4,8 +4,6 @@ import Inventario.Objeto;
 import Personajes.Personaje;
 
 public class PlumaFenix extends Objeto {
-    //Atributos
-    private final int psRestaurados = 180;
 
     //Constructor
     public PlumaFenix(int cantidad) {
@@ -35,7 +33,7 @@ public class PlumaFenix extends Objeto {
             cantidad--;
             System.out.println(personaje.getNombre() + " ha vuelto al combate");
         } else {
-            System.out.println("Esto no tendría sentido");
+            System.out.println("\nEsto no tendría sentido");
         }
         return seHaUsado;
     }
