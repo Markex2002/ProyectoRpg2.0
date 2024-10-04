@@ -43,6 +43,9 @@ public class Enemigo extends Personaje {
 
         System.out.println("\n" + nombre + " ataca a " + aliado.getNombre() + "!");
         System.out.println(aliado.getNombre() + " recibe " + damageReceived + " de daño!");
+        if (aliado.esta_muerto) {
+            System.out.println(aliado.nombre + " ha caido!");
+        }
     }
 
     //Metodo para atacar a un miembro aleatorio del grupo Aliado
