@@ -31,9 +31,9 @@ public class Main {
 
 
         //ENEMIGOS
-        DuendiLemon duendiLemon1 = new DuendiLemon("DuendiLemon A", 100, 20, 50, 20, 20, 50);
-        DuendiLemon duendiLemon2 = new DuendiLemon("DuendiLemon B", 100, 20, 50, 20, 20, 30);
-        DuendiLemon duendiLemon3 = new DuendiLemon("DuendiLemon C", 100, 20, 50, 20, 20, 5);
+        DuendiLemon duendiLemon1 = new DuendiLemon("DuendiLemon A");
+        DuendiLemon duendiLemon2 = new DuendiLemon("DuendiLemon B");
+        DuendiLemon duendiLemon3 = new DuendiLemon("DuendiLemon C");
 
 
         //CREACIÓN DEL GRUPO

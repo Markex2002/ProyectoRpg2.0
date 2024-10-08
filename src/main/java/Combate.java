@@ -33,6 +33,9 @@ public class Combate {
 
     //METODOS
     public void comenzarCombate(){
+        for (Personaje personaje : ordenacionTurnos) {
+            System.out.println(personaje + "ola");
+        }
         do {
             mostrarEstadoGrupo();
 
@@ -49,6 +52,7 @@ public class Combate {
                     if (!personaje.isEsta_muerto()){
                         //CASO ALIADO
                         if (personaje instanceof Aliado aliado) {
+                            System.out.println("Turno Aliado");
                             boolean noHaActuado;
                             int accion;
                             //Al empezar su turno, deja de defenderse, en caso de que se estuviera defendiendo.
@@ -64,6 +68,7 @@ public class Combate {
                         }
                         //CASO ENEMIGO
                         else if (personaje instanceof Enemigo enemigo) {
+                            System.out.println("Turno Enemigo");
                             enemigo.setSe_defiende(false);
                             enemigo.ataqueNormal(grupoAliado);
                         }

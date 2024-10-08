@@ -10,6 +10,10 @@ public class Enemigo extends Personaje {
         super(nombre, max_ps, max_pm, ataque, magia, armadura, velocidad);
     }
 
+    public Enemigo(){};
+
+
+
 
     //GETTERS AND SETTERS
 

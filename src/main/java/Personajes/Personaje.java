@@ -31,6 +31,9 @@ public class Personaje implements Comparable<Personaje> {
         this.velocidad = velocidad;
     }
 
+    //CONSTRUCTOR VACIO
+    public Personaje(){}
+
 
 
     //GETTERS AND SETTERS
