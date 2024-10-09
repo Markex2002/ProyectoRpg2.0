@@ -9,7 +9,7 @@ public class Combate {
     //ATRIBUTOS
     private final List<Aliado> grupoAliado;
     private final List<Enemigo> grupoEnemigo;
-    private final Set<Personaje> ordenacionTurnos;
+    private final List<Personaje> ordenacionTurnos;
     //DARLE FINAL A BOLSA PODRÍA DAR PROBLEMAS, ESTAR ATENTO
     private final Bolsa bolsa;
     int turno;
@@ -25,9 +25,17 @@ public class Combate {
         this.grupoEnemigo = grupoEnemigo;
         this.bolsa = bolsa;
         //Creamos una lista con los turnos que se usaran en combate
-        this.ordenacionTurnos = new TreeSet<>((o1, o2) ->  o2.getVelocidad() - o1.getVelocidad());
+
+        //SI USAMOS UNA LISTA tIPO SET, EL ARRAY SE ORDENA SOLO, PERO
+        //LOS PERSONAJES QUE TENGAN LA MISMA VELOCIDAD SE SOLAPAN.
+        this.ordenacionTurnos = new ArrayList<>();
         ordenacionTurnos.addAll(grupoAliado);
         ordenacionTurnos.addAll(grupoEnemigo);
+
+        //ORDENAMOS A LOS COMBATIENTES SEGUN SU VELOCIDAD MEDIANTE UN COMPARATOR
+        //ESTO SE PUEDE OPTIMIZAR?
+        //DEBERIA ELIMINAR LOS COMPARABLES DE LAS CLASES?
+        ordenacionTurnos.sort((o1, o2) ->  o2.getVelocidad() - o1.getVelocidad());
     }
 
 
