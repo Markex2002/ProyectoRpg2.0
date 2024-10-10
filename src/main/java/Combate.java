@@ -41,9 +41,6 @@ public class Combate {
 
     //METODOS
     public void comenzarCombate(){
-        for (Personaje personaje : ordenacionTurnos) {
-            System.out.println(personaje + "ola");
-        }
         do {
             mostrarEstadoGrupo();
 
@@ -60,7 +57,6 @@ public class Combate {
                     if (!personaje.isEsta_muerto()){
                         //CASO ALIADO
                         if (personaje instanceof Aliado aliado) {
-                            System.out.println("Turno Aliado");
                             boolean noHaActuado;
                             int accion;
                             //Al empezar su turno, deja de defenderse, en caso de que se estuviera defendiendo.
@@ -76,7 +72,6 @@ public class Combate {
                         }
                         //CASO ENEMIGO
                         else if (personaje instanceof Enemigo enemigo) {
-                            System.out.println("Turno Enemigo");
                             enemigo.setSe_defiende(false);
                             enemigo.ataqueNormal(grupoAliado);
                         }
@@ -152,7 +147,12 @@ public class Combate {
             case 1:
                 System.out.println("\n¿A quien quieres atacar?");
                 //Seleccionamos al enemigo y atacamos
-                aliado.ataqueNormal(grupoEnemigo.get(seleccionarEnemigo()));
+                int eleccion = seleccionarEnemigo();
+                if (eleccion < 0) {
+                    haActuado = false;
+                } else {
+                    aliado.ataqueNormal(grupoEnemigo.get(eleccion));
+                }
                 break;
 
             case 2:
@@ -187,8 +187,10 @@ public class Combate {
         int eleccion;
         //Hacemos una lista en las que guardaremos las elecciones válidas
         List<Integer> eleccionesValidas = new ArrayList<>();
+        eleccionesValidas.add(-1);
 
         //Iteramos sobre el grupo enemigo para hacer un menu e imprimirlo
+        System.out.println("(-1) cancelar");
         for (Enemigo enemigo : grupoEnemigo){
             //Nos aseguramos de que solo salgan los que no están muertos
             if (!enemigo.isEsta_muerto()){
