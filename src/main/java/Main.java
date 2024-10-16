@@ -15,6 +15,7 @@ public class Main {
     public static void main(String[] args){
         //CREACION DE BOLSAS
         Bolsa bolsa = new Bolsa();
+        int gold = 100;
 
         //INSTANCIAMOS EL OBJETO EN EL MISMO MOMENTO, ASI EVITAMOS CREAR MUCHAS CLASES IGUALES
         bolsa.addObject(new Pocion(1));
@@ -57,7 +58,11 @@ public class Main {
         //Creamos el combate con ambos grupos
         Combate combate = new Combate(grupo, grupoEnemigo1, bolsa);
         //Comenzamos el combate
-        combate.comenzarCombate();
+        combate.comenzarCombate(gold);
+
+
+
+        System.out.println(gold);
 
     }
 }

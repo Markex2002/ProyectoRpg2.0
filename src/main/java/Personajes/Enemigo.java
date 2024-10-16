@@ -4,18 +4,35 @@ import java.util.List;
 
 public class Enemigo extends Personaje {
     //ATRIBUTOS
+    int xpDropped;
+    int goldDropped;
 
     //CONSTRUCTOR
-    public Enemigo(String nombre, int max_ps, int max_pm, int ataque, int magia, int armadura, int velocidad) {
+    public Enemigo(String nombre, int max_ps, int max_pm, int ataque, int magia, int armadura, int velocidad, int xpDropped, int goldDropped) {
         super(nombre, max_ps, max_pm, ataque, magia, armadura, velocidad);
+
+        this.xpDropped = xpDropped;
+        this.goldDropped = goldDropped;
     }
 
     public Enemigo(){};
 
 
 
-
     //GETTERS AND SETTERS
+    public int getXpDropped() {
+        return xpDropped;
+    }
+    public void setXpDropped(int xpDropped) {
+        this.xpDropped = xpDropped;
+    }
+    public int getGoldDropped() {
+        return goldDropped;
+    }
+    public void setGoldDropped(int goldDropped) {
+        this.goldDropped = goldDropped;
+    }
+
 
 
 
@@ -51,6 +68,7 @@ public class Enemigo extends Personaje {
             System.out.println(aliado.nombre + " ha caido!");
         }
     }
+
 
     //Metodo para atacar a un miembro aleatorio del grupo Aliado
     public Aliado elegirObjetivoAlAzar(List<Aliado> grupoAliados){

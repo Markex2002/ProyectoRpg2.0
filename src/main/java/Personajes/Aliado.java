@@ -14,9 +14,33 @@ public class Aliado extends Personaje{
     //CONSTRUCTOR
     public Aliado(String nombre, int max_ps, int max_pm, int ataque, int magia, int armadura, int velocidad) {
         super(nombre, max_ps, max_pm, ataque, magia, armadura, velocidad);
-        xpGoal = 100;
+        xpGoal = 10;
+        exp = 0;
         level = 1;
     }
+
+
+
+    //GETTERS AND SETTERS
+    public int getExp() {
+        return exp;
+    }
+    public void setExp(int exp) {
+        this.exp = exp;
+    }
+    public int getXpGoal() {
+        return xpGoal;
+    }
+    public void setXpGoal(int xpGoal) {
+        this.xpGoal = xpGoal;
+    }
+    public int getLevel() {
+        return level;
+    }
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
 
 
     //METODOS//
@@ -29,6 +53,10 @@ public class Aliado extends Personaje{
 
         return menu;
     }
+
+    
+
+
 
     //Metodo que permitira a los aliados usar Objetos en Batalla
     public boolean usarObjeto(List<Aliado> grupoAliado, Bolsa bolsa, Scanner sc){

@@ -6,8 +6,8 @@ public class DuendiLemon extends Enemigo {
     //ATRIBUTOS
 
     //CONSTRUCTOR
-    public DuendiLemon(String nombre, int max_ps, int max_pm, int ataque, int magia, int armadura, int velocidad) {
-        super(nombre, max_ps, max_pm, ataque, magia, armadura, velocidad);
+    public DuendiLemon(String nombre, int max_ps, int max_pm, int ataque, int magia, int armadura, int velocidad, int xpDropped, int goldDropped) {
+        super(nombre, max_ps, max_pm, ataque, magia, armadura, velocidad, xpDropped, goldDropped);
     }
 
     public DuendiLemon(String nombre){
@@ -20,6 +20,8 @@ public class DuendiLemon extends Enemigo {
         setMagia(20);
         setArmadura(20);
         setVelocidad(30);
+        setXpDropped(2);
+        setGoldDropped(10);
         }
 
 

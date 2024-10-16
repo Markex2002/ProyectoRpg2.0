@@ -13,6 +13,10 @@ public class Combate {
     //DARLE FINAL A BOLSA PODRÍA DAR PROBLEMAS, ESTAR ATENTO
     private final Bolsa bolsa;
     int turno;
+
+    int goldReward;
+    int expReward;
+
     Scanner sc;
 
 
@@ -23,8 +27,12 @@ public class Combate {
         //Inicializamos los datos de este combate
         this.grupoAliado = grupoAliado;
         this.grupoEnemigo = grupoEnemigo;
-        this.bolsa = bolsa;
         //Creamos una lista con los turnos que se usaran en combate
+        this.bolsa = bolsa;
+        //Calculamos cuanto oro y experiencia ganaremos si ganamos el combate
+        goldReward = goldRewardCalc();
+        expReward = expdRewardCalc();
+
 
         //SI USAMOS UNA LISTA tIPO SET, EL ARRAY SE ORDENA SOLO, PERO
         //LOS PERSONAJES QUE TENGAN LA MISMA VELOCIDAD SE SOLAPAN.
@@ -40,7 +48,8 @@ public class Combate {
 
 
     //METODOS
-    public void comenzarCombate(){
+    public void comenzarCombate(int gold){
+        //Comenzamos el combate
         do {
             mostrarEstadoGrupo();
 
@@ -89,6 +98,14 @@ public class Combate {
             System.out.println("HAS PERDIDO");
         } else {
             System.out.println("HAS GANADO");
+            System.out.println("Recibiste " + goldReward + " de oro.");
+            gold += goldReward;
+
+            System.out.println("Todos recibieron " + expReward + " xp");
+            for (Aliado aliado : grupoAliado) {
+                aliado.setExp(aliado.getExp() + expReward);
+            }
+            
         }
 
         //Se acaba el combate y cerramos el Scanner
@@ -134,6 +151,26 @@ public class Combate {
         }
         return victoria;
     }
+
+
+    //Funcion para calcular el oro que ganaremos al final de la batalla
+    public Integer goldRewardCalc(){
+        int totalGold = 0;
+        for (Enemigo enemigo: grupoEnemigo) {
+            totalGold += enemigo.getGoldDropped();
+        }
+        return totalGold;
+    }
+
+    //Funcion para calcular la experiencia que ganaremos al final de la batalla
+    public Integer expdRewardCalc(){
+        int totalExp = 0;
+        for (Enemigo enemigo: grupoEnemigo) {
+            totalExp += enemigo.getXpDropped();
+        }
+        return totalExp;
+    } 
+    
 
 
 
