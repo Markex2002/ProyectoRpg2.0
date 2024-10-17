@@ -15,7 +15,6 @@ public class Main {
     public static void main(String[] args){
         //CREACION DE BOLSAS
         Bolsa bolsa = new Bolsa();
-        int gold = 100;
 
         //INSTANCIAMOS EL OBJETO EN EL MISMO MOMENTO, ASI EVITAMOS CREAR MUCHAS CLASES IGUALES
         bolsa.addObject(new Pocion(1));
@@ -25,10 +24,10 @@ public class Main {
 
 
         //CREACIÓN DE PERSONAJES
-        Guerrero guerrero = new Guerrero("Marco", 100, 40, 60, 20, 30, 40);
-        Mago mago = new Mago("Cali", 100, 20, 40, 20, 10, 20);
-        Arquero arquero = new Arquero("Legolas", 100, 30, 70, 20, 20,60);
-        Caballero caballero = new Caballero("Edea", 100, 40, 80, 20, 45,10);
+        Guerrero guerrero = new Guerrero("Marco", 100, 40, 600, 20, 30, 40);
+        Mago mago = new Mago("Cali", 100, 20, 400, 20, 10, 20);
+        Arquero arquero = new Arquero("Legolas", 100, 30, 700, 20, 20,60);
+        Caballero caballero = new Caballero("Edea", 100, 40, 800, 20, 45,10);
 
 
         //ENEMIGOS
@@ -50,19 +49,25 @@ public class Main {
         //Este grupo está compuesto por clases que heredan de Enemigo
         List<Enemigo> grupoEnemigo1 = new ArrayList<>();
         grupoEnemigo1.add(duendiLemon1);
-        grupoEnemigo1.add(duendiLemon2);
-        grupoEnemigo1.add(duendiLemon3);
+        //grupoEnemigo1.add(duendiLemon2);
+        //grupoEnemigo1.add(duendiLemon3);
 
 
         //COMBATES
         //Creamos el combate con ambos grupos
         Combate combate = new Combate(grupo, grupoEnemigo1, bolsa);
         //Comenzamos el combate
-        combate.comenzarCombate(gold);
+        combate.comenzarCombate();
 
 
+        System.out.println("HOLAAAA");
+        System.out.println(bolsa.getGold());
 
-        System.out.println(gold);
 
+        combate.comenzarCombate();
+
+
+        System.out.println("HOLAAAA");
+        System.out.println(bolsa.getGold());
     }
 }

@@ -48,7 +48,7 @@ public class Combate {
 
 
     //METODOS
-    public void comenzarCombate(int gold){
+    public void comenzarCombate(){
         //Comenzamos el combate
         do {
             mostrarEstadoGrupo();
@@ -99,7 +99,7 @@ public class Combate {
         } else {
             System.out.println("HAS GANADO");
             System.out.println("Recibiste " + goldReward + " de oro.");
-            gold += goldReward;
+            bolsa.setGold(bolsa.getGold() + goldReward);
 
             System.out.println("Todos recibieron " + expReward + " xp");
             for (Aliado aliado : grupoAliado) {

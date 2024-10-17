@@ -6,12 +6,16 @@ import java.util.List;
 public class Bolsa {
     //Atributos
     private List<Objeto> inventario;
+    private int gold;
 
     //Constructor
     public Bolsa() {
         this.inventario = new ArrayList<>();
+        this.gold = 0;
     }
 
+
+    
     //GETTERS AND SETTERS
     public List<Objeto> getInventario() {
         return inventario;
@@ -19,6 +23,13 @@ public class Bolsa {
     public void setInventario(List<Objeto> inventario) {
         this.inventario = inventario;
     }
+    public int getGold() {
+        return gold;
+    }
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
+    
 
 
     //Métodos
@@ -29,7 +40,7 @@ public class Bolsa {
         int contador = 0;
         //Miramos cuantos objetos tenemos en el inventario
         for (Objeto objeto : inventario) {
-            System.out.println("(" + contador + ")" + objeto.getNombre() + " x" + objeto.cantidad);
+            resultado += "(" + contador + ")" + objeto.getNombre() + " x" + objeto.cantidad + "\n";
             contador++;
         }
         return resultado;
@@ -62,4 +73,6 @@ public class Bolsa {
     public void comprobarCantidadObjetos(){
         inventario.removeIf(objeto -> objeto.cantidad <= 0);
     }
+
+
 }
