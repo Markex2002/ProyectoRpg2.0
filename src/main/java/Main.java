@@ -61,13 +61,13 @@ public class Main {
 
 
         System.out.println("HOLAAAA");
-        System.out.println(bolsa.getGold());
-
+        System.out.println("HOLAAAA");
+        System.out.println("HOLAAAA");
+        System.out.println("HOLAAAA");
+        System.out.println(bolsa.getGold() + " oro");
 
         combate.comenzarCombate();
 
-
-        System.out.println("HOLAAAA");
-        System.out.println(bolsa.getGold());
+        System.out.println(bolsa.getGold() + " oro");
     }
 }
