@@ -2,9 +2,9 @@ import Inventario.Bolsa;
 import Inventario.ObjetosCombate.PlumaFenix;
 import Inventario.ObjetosCombate.Pocion;
 import Inventario.ObjetosCombate.SuperPocion;
+import Mazmorra.MazmorraFinal;
 import Personajes.Aliado;
 import Personajes.Clases.*;
-import Personajes.Enemigo;
 import Personajes.Enemigos.*;
 
 
@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args){
-        //CREACION DE BOLSAS
+        //CREACION DE BOLSA
         Bolsa bolsa = new Bolsa();
 
         //INSTANCIAMOS EL OBJETO EN EL MISMO MOMENTO, ASI EVITAMOS CREAR MUCHAS CLASES IGUALES
@@ -30,7 +30,7 @@ public class Main {
         Caballero caballero = new Caballero("Edea", 100, 40, 800, 20, 45,10);
 
 
-        //ENEMIGOS
+        //CREACION DE ENEMIGOS
         DuendiLemon duendiLemon1 = new DuendiLemon("DuendiLemon A");
         DuendiLemon duendiLemon2 = new DuendiLemon("DuendiLemon B");
         DuendiLemon duendiLemon3 = new DuendiLemon("DuendiLemon C");
@@ -47,27 +47,29 @@ public class Main {
 
         //CREACIÓN DE GRUPOS ENEMIGOS
         //Este grupo está compuesto por clases que heredan de Enemigo
-        List<Enemigo> grupoEnemigo1 = new ArrayList<>();
-        grupoEnemigo1.add(duendiLemon1);
+        //List<Enemigo> grupoEnemigo1 = new ArrayList<>();
+        //grupoEnemigo1.add(duendiLemon1);
         //grupoEnemigo1.add(duendiLemon2);
         //grupoEnemigo1.add(duendiLemon3);
 
 
-        //COMBATES
+        //COMBATES//
         //Creamos el combate con ambos grupos
-        Combate combate = new Combate(grupo, grupoEnemigo1, bolsa);
+        //Combate combate = new Combate(grupo, grupoEnemigo1, bolsa);
         //Comenzamos el combate
-        combate.comenzarCombate();
+        //combate.comenzarCombate();
 
 
-        System.out.println("HOLAAAA");
-        System.out.println("HOLAAAA");
-        System.out.println("HOLAAAA");
-        System.out.println("HOLAAAA");
-        System.out.println(bolsa.getGold() + " oro");
 
-        combate.comenzarCombate();
 
-        System.out.println(bolsa.getGold() + " oro");
+
+        //MAZMORRAS//
+        //Creamos la mazmorra y metemos a nuestros heroes
+        MazmorraFinal mazmorraFinal = new MazmorraFinal(grupo);
+        mazmorraFinal.watchMap();
+
+
+
+
     }
 }
