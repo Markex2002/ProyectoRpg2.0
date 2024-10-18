@@ -5,7 +5,6 @@ import Inventario.ObjetosCombate.SuperPocion;
 import Mazmorra.MazmorraFinal;
 import Personajes.Aliado;
 import Personajes.Clases.*;
-import Personajes.Enemigos.*;
 
 
 import java.util.ArrayList;
@@ -31,9 +30,9 @@ public class Main {
 
 
         //CREACION DE ENEMIGOS
-        DuendiLemon duendiLemon1 = new DuendiLemon("DuendiLemon A");
-        DuendiLemon duendiLemon2 = new DuendiLemon("DuendiLemon B");
-        DuendiLemon duendiLemon3 = new DuendiLemon("DuendiLemon C");
+        //DuendiLemon duendiLemon1 = new DuendiLemon("DuendiLemon A");
+        //DuendiLemon duendiLemon2 = new DuendiLemon("DuendiLemon B");
+        //DuendiLemon duendiLemon3 = new DuendiLemon("DuendiLemon C");
 
 
         //CREACIÓN DEL GRUPO
