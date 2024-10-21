@@ -64,7 +64,7 @@ public class Main {
 
         //MAZMORRAS//
         //Creamos la mazmorra y metemos a nuestros heroes
-        MazmorraFinal mazmorraFinal = new MazmorraFinal(grupo);
+        MazmorraFinal mazmorraFinal = new MazmorraFinal(grupo, bolsa);
         mazmorraFinal.watchMap();
 
         //Jugamos la Mazmorra

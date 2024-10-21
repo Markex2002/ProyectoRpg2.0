@@ -1,14 +1,20 @@
 package Mazmorra;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import Inventario.Bolsa;
+import Inventario.Objeto;
+import Inventario.ObjetosCombate.PlumaFenix;
+import Inventario.ObjetosCombate.Pocion;
 import Personajes.Aliado;
 
 public class MazmorraFinal {
     //ATRIBUTOS
     String[][] dungeonMap;
+    List<Objeto> treasureItemList;
 
     int treasureChests;
     int trapRooms;
@@ -18,6 +24,7 @@ public class MazmorraFinal {
     int yHeroes;
 
     List<Aliado> grupoAliado;
+    Bolsa bolsa;
 
     //El escaner de Mazmorra podria dar conflicto con el Scanner de Combate, estar atento....
     Scanner sc;
@@ -27,10 +34,11 @@ public class MazmorraFinal {
 
 
     //COSNTRUCTOR
-    public MazmorraFinal(List<Aliado> grupoAliado) {
+    public MazmorraFinal(List<Aliado> grupoAliado, Bolsa bolsa) {
         //Inicializamos los atributos de esta Mazmorra
         sc = new Scanner(System.in);
         this.grupoAliado = grupoAliado;
+        this.bolsa = bolsa;
 
         //Decidimos como de grande sera nuestra mazmorra
         this.dungeonMap = new String[5][5];
@@ -39,6 +47,13 @@ public class MazmorraFinal {
         this.treasureChests = numRandomizer(3, 1);
         this.trapRooms= numRandomizer(1, 0);
         this.enemyRooms = numRandomizer(3, 1);
+
+        //Creamos los posibles tesoros que pueden salir de un cofre
+        treasureItemList = new ArrayList<>();
+        treasureItemList.add(new Pocion(2));
+        treasureItemList.add(new Pocion(1));
+        treasureItemList.add(new PlumaFenix(1));
+
 
         //Creamos nuestra Mazmorra
         dungeonMapCreator();
@@ -103,7 +118,7 @@ public class MazmorraFinal {
 
 
         //Colocamos las salas de Enemigos
-        for (int i = 0; i < treasureChests; i++) {
+        for (int i = 0; i < enemyRooms; i++) {
             int x = numRandomizer(4, 0);
             int y = numRandomizer(4, 0);
 
@@ -195,7 +210,7 @@ public class MazmorraFinal {
 
 
 
-    //Metodo para imprimir el movimiento de los heroes
+    //Metodo para imprimir el movimiento de los heroes y ver sus movimientos disponibles
     public List<Integer> menuMovimiento(int xHeroes, int yHeroes){
         List<Integer> movimientosPosibles = new ArrayList<>();
         String arriba = "(0) moverve arriba";
@@ -246,6 +261,7 @@ public class MazmorraFinal {
                     if (movimientosDisponibles.contains(movimiento)) {
                         System.out.println("Te mueves arriba");
                         dungeonMap[xHeroes][yHeroes] = "r";
+                        eventoSala(xHeroes + 1, yHeroes);
                         dungeonMap[xHeroes + 1][yHeroes] = "H";
                         movimientoRealizado = true;
                     } else {
@@ -256,6 +272,7 @@ public class MazmorraFinal {
                     if (movimientosDisponibles.contains(movimiento)) {
                         System.out.println("Te mueves abajo");
                         dungeonMap[xHeroes][yHeroes] = "r";
+                        eventoSala(xHeroes - 1, yHeroes);
                         dungeonMap[xHeroes - 1][yHeroes] = "H";
                         movimientoRealizado = true;
                     } else {
@@ -267,6 +284,7 @@ public class MazmorraFinal {
                     if (movimientosDisponibles.contains(movimiento)) {
                         System.out.println("Te mueves a la derecha");
                         dungeonMap[xHeroes][yHeroes] = "r";
+                        eventoSala(xHeroes, yHeroes + 1);
                         dungeonMap[xHeroes][yHeroes + 1] = "H";
                         movimientoRealizado = true;
                     } else {
@@ -278,6 +296,7 @@ public class MazmorraFinal {
                     if (movimientosDisponibles.contains(movimiento)) {
                         System.out.println("Te mueves a la izquierda");
                         dungeonMap[xHeroes][yHeroes] = "r";
+                        eventoSala(xHeroes, yHeroes - 1);
                         dungeonMap[xHeroes][yHeroes - 1] = "H";
                         movimientoRealizado = true;
                     } else {
@@ -290,8 +309,43 @@ public class MazmorraFinal {
                         break;
                 }
 
-
         return movimientoRealizado; 
+    }
+
+
+
+
+    //EVENTOS DE SALAS
+    public void eventoSala(int x, int y){
+        String tipoSala = dungeonMap[x][y];
+        switch (tipoSala) {
+            case "E":
+            enemyRoomEvent();
+                break;
+
+            case "T":
+            treasureRoomEvent();
+                break;
+
+            case "r":
+            System.out.println("Encontraste una habitacion normal");
+                break;
+        
+            default:
+                break;
+        }
+    }
+
+
+    public void treasureRoomEvent(){
+        Collections.shuffle(treasureItemList);
+        System.out.println("¡Un cofre!");
+        System.out.println("Obtuviste: " + treasureItemList.get(0).getNombre() + " x" + treasureItemList.get(0).getCantidad());
+        bolsa.addObject(treasureItemList.get(0));
+    }
+
+    public void enemyRoomEvent(){
+        System.out.println("Aparece un Enemigo");
     }
 
 
