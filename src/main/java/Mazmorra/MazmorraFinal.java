@@ -155,33 +155,27 @@ public class MazmorraFinal {
     public void exploreDungeon(){
         //Buscamos y actualizamos la posicion de los Heroes
         posicionHeroes();
-
         //Una vez encontrada la posicion de nuestros Heroes
         //Mostramos las opciones que tiene en su disposicion.
-        List<Integer> posiblesMovimientos = menuMovimiento(xHeroes, yHeroes);
-        int accion = 0;
+        List<Integer> posiblesMovimientos;
+        boolean finMazmorra = false;
 
-        
+
+        do {
+            posiblesMovimientos = menuMovimiento(xHeroes, yHeroes);
+            realizarMovimientos(posiblesMovimientos);
+        } while (!finMazmorra);
+    }
+
+
+
+    public void realizarMovimientos(List<Integer> posiblesMovimientos){
+        int accion = 0;
         do {
             //Elegimos a donde nos queremos mover
             accion = sc.nextInt();
         } while (!elegirMovimiento(accion, posiblesMovimientos, xHeroes, yHeroes));
         posicionHeroes();
-        posiblesMovimientos = menuMovimiento(xHeroes, yHeroes);
-        watchMap();
-        do {
-            //Elegimos a donde nos queremos mover
-            accion = sc.nextInt();
-        } while (!elegirMovimiento(accion, posiblesMovimientos, xHeroes, yHeroes));
-        posicionHeroes();
-        posiblesMovimientos = menuMovimiento(xHeroes, yHeroes);
-        watchMap();
-        do {
-            //Elegimos a donde nos queremos mover
-            accion = sc.nextInt();
-        } while (!elegirMovimiento(accion, posiblesMovimientos, xHeroes, yHeroes));
-        posicionHeroes();
-        posiblesMovimientos = menuMovimiento(xHeroes, yHeroes);
         watchMap();
     }
 
