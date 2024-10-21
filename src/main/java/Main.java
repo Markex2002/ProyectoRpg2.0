@@ -67,6 +67,9 @@ public class Main {
         MazmorraFinal mazmorraFinal = new MazmorraFinal(grupo);
         mazmorraFinal.watchMap();
 
+        //Jugamos la Mazmorra
+        mazmorraFinal.exploreDungeon();
+
 
 
 

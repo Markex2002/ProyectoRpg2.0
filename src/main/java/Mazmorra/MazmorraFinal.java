@@ -1,6 +1,8 @@
 package Mazmorra;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import Personajes.Aliado;
 
@@ -12,7 +14,13 @@ public class MazmorraFinal {
     int trapRooms;
     int enemyRooms;
 
+    int xHeroes;
+    int yHeroes;
+
     List<Aliado> grupoAliado;
+
+    //El escaner de Mazmorra podria dar conflicto con el Scanner de Combate, estar atento....
+    Scanner sc;
 
 
 
@@ -20,6 +28,8 @@ public class MazmorraFinal {
 
     //COSNTRUCTOR
     public MazmorraFinal(List<Aliado> grupoAliado) {
+        //Inicializamos los atributos de esta Mazmorra
+        sc = new Scanner(System.in);
         this.grupoAliado = grupoAliado;
 
         //Decidimos como de grande sera nuestra mazmorra
@@ -72,10 +82,38 @@ public class MazmorraFinal {
 
 
     //METODOS
+    /////METODOS PARA LA CREACION DE LA MAZMORRA/////
     public void dungeonMapCreator(){
         //Empezaremos colocando la casilla en la que empezaran los heroes
-        dungeonMap[0][2] = "h";
+        dungeonMap[0][2] = "H";
+        dungeonMap[4][2] = "B";
 
+        //Colocamos las salas del tesoro
+        for (int i = 0; i < treasureChests; i++) {
+            int x = numRandomizer(4, 0);
+            int y = numRandomizer(4, 0);
+
+            //Comprobamos si la habitacion generada esta vacia
+            if (dungeonMap[x][y] == null) {
+                dungeonMap[x][y] = "T";
+            } else {
+                i--;
+            }
+        }
+
+
+        //Colocamos las salas de Enemigos
+        for (int i = 0; i < treasureChests; i++) {
+            int x = numRandomizer(4, 0);
+            int y = numRandomizer(4, 0);
+
+            //Comprobamos si la habitacion generada esta vacia
+            if (dungeonMap[x][y] == null) {
+                dungeonMap[x][y] = "E";
+            } else {
+                i--;
+            }
+        }
 
         //Rellenamos los espacios vacios con Habitaciones normales
         for (int i = 0; i < dungeonMap.length; i++) {
@@ -88,18 +126,16 @@ public class MazmorraFinal {
     }
 
 
-    
-
     //Metodo que usaremos para mirar nuestro mapa
     public void watchMap(){
         for (int i = dungeonMap.length - 1; i >= 0; i--) {
             System.out.println();
             for (int j = 0; j < dungeonMap[i].length; j++) {
-                System.out.print(dungeonMap[i][j] + " ");
+                System.out.print(dungeonMap[i][j] + "  ");
             }
         }
+        System.out.println();
     }
-
 
 
     //Metodo que usaremos para rellenar nuestras casillas
@@ -111,13 +147,164 @@ public class MazmorraFinal {
 
 
 
-    //Metodo para comenzar a jugar la mazmorra
-    public void exploreDungeon(){
 
+
+
+
+    /////METODOS PARA PODER JUGAR LA MAZMORRA/////
+    public void exploreDungeon(){
+        //Buscamos y actualizamos la posicion de los Heroes
+        posicionHeroes();
+
+        //Una vez encontrada la posicion de nuestros Heroes
+        //Mostramos las opciones que tiene en su disposicion.
+        List<Integer> posiblesMovimientos = menuMovimiento(xHeroes, yHeroes);
+        int accion = 0;
+
+        
+        do {
+            //Elegimos a donde nos queremos mover
+            accion = sc.nextInt();
+        } while (!elegirMovimiento(accion, posiblesMovimientos, xHeroes, yHeroes));
+        posicionHeroes();
+        posiblesMovimientos = menuMovimiento(xHeroes, yHeroes);
+        watchMap();
+        do {
+            //Elegimos a donde nos queremos mover
+            accion = sc.nextInt();
+        } while (!elegirMovimiento(accion, posiblesMovimientos, xHeroes, yHeroes));
+        posicionHeroes();
+        posiblesMovimientos = menuMovimiento(xHeroes, yHeroes);
+        watchMap();
+        do {
+            //Elegimos a donde nos queremos mover
+            accion = sc.nextInt();
+        } while (!elegirMovimiento(accion, posiblesMovimientos, xHeroes, yHeroes));
+        posicionHeroes();
+        posiblesMovimientos = menuMovimiento(xHeroes, yHeroes);
+        watchMap();
     }
+
+
+
+    //Metodo para buscar y actualizar la posicion de nuestro Grupo
+    public void posicionHeroes(){
+        for (int i = 0; i < dungeonMap.length; i++) {
+            for (int j = 0; j < dungeonMap[i].length; j++) {
+                if(dungeonMap[i][j] == "H") {
+                    xHeroes = i;
+                    yHeroes = j;
+                }
+            }
+        }
+    }
+
+
+
+    //Metodo para imprimir el movimiento de los heroes
+    public List<Integer> menuMovimiento(int xHeroes, int yHeroes){
+        List<Integer> movimientosPosibles = new ArrayList<>();
+        String arriba = "(0) moverve arriba";
+        String abajo = "(1) moverve abajo";
+        String derecha = "(2) moverve a la derecha";
+        String izquierda = "(3) moverve a la Izquierda";
+
+        //Hacemos comprobaciones para ver en que 
+        //direcciones nos podemos mover
+        //Arriba Abajo
+        if (xHeroes == dungeonMap.length - 1) {
+            System.out.println(abajo);
+            movimientosPosibles.add(1);
+        } else if (xHeroes == 0) {
+            System.out.println(arriba);
+            movimientosPosibles.add(0);
+        } else {
+            System.out.println(arriba);
+            System.out.println(abajo);
+            movimientosPosibles.add(0);
+            movimientosPosibles.add(1);
+        }
+        //Derecha Izquierda
+        if (yHeroes == dungeonMap[xHeroes].length - 1) {
+            System.out.println(izquierda);
+            movimientosPosibles.add(3);
+        } else if (yHeroes == 0) {
+            System.out.println(derecha);
+            movimientosPosibles.add(2);
+        } else {
+            System.out.println(derecha);
+            System.out.println(izquierda);
+            movimientosPosibles.add(2);
+            movimientosPosibles.add(3);
+        }
+
+        return movimientosPosibles;
+    }
+
+
+
+    //Metodo que usaremos para movernos por el mapa
+    public boolean elegirMovimiento(int movimiento, List<Integer> movimientosDisponibles, int xHeroes, int yHeroes){
+        boolean movimientoRealizado = false;
+                //Realizamos la accion de movernos
+                switch (movimiento) {
+                    case 0:
+                    if (movimientosDisponibles.contains(movimiento)) {
+                        System.out.println("Te mueves arriba");
+                        dungeonMap[xHeroes][yHeroes] = "r";
+                        dungeonMap[xHeroes + 1][yHeroes] = "H";
+                        movimientoRealizado = true;
+                    } else {
+                        System.out.println("Movimiento no valido");
+                    } 
+                        break;
+                    case 1:
+                    if (movimientosDisponibles.contains(movimiento)) {
+                        System.out.println("Te mueves abajo");
+                        dungeonMap[xHeroes][yHeroes] = "r";
+                        dungeonMap[xHeroes - 1][yHeroes] = "H";
+                        movimientoRealizado = true;
+                    } else {
+                        System.out.println("Movimiento no valido");
+                    }
+                        
+                        break;
+                    case 2:
+                    if (movimientosDisponibles.contains(movimiento)) {
+                        System.out.println("Te mueves a la derecha");
+                        dungeonMap[xHeroes][yHeroes] = "r";
+                        dungeonMap[xHeroes][yHeroes + 1] = "H";
+                        movimientoRealizado = true;
+                    } else {
+                        System.out.println("Movimiento no valido");
+                    }
+                        
+                        break;
+                    case 3:
+                    if (movimientosDisponibles.contains(movimiento)) {
+                        System.out.println("Te mueves a la izquierda");
+                        dungeonMap[xHeroes][yHeroes] = "r";
+                        dungeonMap[xHeroes][yHeroes - 1] = "H";
+                        movimientoRealizado = true;
+                    } else {
+                        System.out.println("Movimiento no valido");
+                    }
+                        break;
+                
+                    default:
+                    System.out.println("Acción no válida");
+                        break;
+                }
+
+
+        return movimientoRealizado; 
+    }
+
+
+
     
 
-    //Metodo para randomizar las salas de la mazmorra
+    //Metodo para randomizar las numeros en un rango
     public Integer numRandomizer(int max, int min){
         int num;
         num = (int)(Math.random() * max) + min;     
