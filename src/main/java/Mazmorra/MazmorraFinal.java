@@ -5,16 +5,23 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import Combate.Combate;
 import Inventario.Bolsa;
 import Inventario.Objeto;
 import Inventario.ObjetosCombate.PlumaFenix;
 import Inventario.ObjetosCombate.Pocion;
 import Personajes.Aliado;
+import Personajes.Enemigo;
+import Personajes.Enemigos.DuendiLemon;
+
 
 public class MazmorraFinal {
     //ATRIBUTOS
     String[][] dungeonMap;
     List<Objeto> treasureItemList;
+    List<Enemigo> enemyList;
+
+    Combate combate;
 
     int treasureChests;
     int trapRooms;
@@ -34,9 +41,9 @@ public class MazmorraFinal {
 
 
     //COSNTRUCTOR
-    public MazmorraFinal(List<Aliado> grupoAliado, Bolsa bolsa) {
+    public MazmorraFinal(List<Aliado> grupoAliado, Bolsa bolsa, Scanner sc) {
         //Inicializamos los atributos de esta Mazmorra
-        sc = new Scanner(System.in);
+        this.sc = sc;
         this.grupoAliado = grupoAliado;
         this.bolsa = bolsa;
 
@@ -53,6 +60,10 @@ public class MazmorraFinal {
         treasureItemList.add(new Pocion(2));
         treasureItemList.add(new Pocion(1));
         treasureItemList.add(new PlumaFenix(1));
+        treasureItemList.add(new Pocion(1));
+
+        //List<Enemigo> listaEnemigos;
+
 
 
         //Creamos nuestra Mazmorra
@@ -142,7 +153,7 @@ public class MazmorraFinal {
 
 
     //Metodo que usaremos para mirar nuestro mapa
-    public void watchMap(){
+    public void devWatchMap(){
         for (int i = dungeonMap.length - 1; i >= 0; i--) {
             System.out.println();
             for (int j = 0; j < dungeonMap[i].length; j++) {
@@ -151,6 +162,30 @@ public class MazmorraFinal {
         }
         System.out.println();
     }
+
+
+        //Metodo que usara el jugador para mirar el mapa
+        public void playerMap(){
+            for (int i = dungeonMap.length - 1; i >= 0; i--) {
+                System.out.println();
+                for (int j = 0; j < dungeonMap[i].length; j++) {
+                    if (dungeonMap[i][j] == "H") {
+                        System.out.print(dungeonMap[i][j] + " ");                        
+                    } else if (i == 0 || i == dungeonMap.length - 1) {
+                        System.out.print("-" + " ");                                                
+                    } else if (j == 0 || j == dungeonMap.length - 1) {
+                        System.out.print("|" + " ");                        
+                    } else {
+                        System.out.print("  " + " ");       
+                    }
+                }
+            }
+            System.out.println();
+        }
+
+
+
+
 
 
     //Metodo que usaremos para rellenar nuestras casillas
@@ -174,24 +209,28 @@ public class MazmorraFinal {
         //Mostramos las opciones que tiene en su disposicion.
         List<Integer> posiblesMovimientos;
         boolean finMazmorra = false;
+        Integer turnos = 0;
 
 
         do {
             posiblesMovimientos = menuMovimiento(xHeroes, yHeroes);
             realizarMovimientos(posiblesMovimientos);
+            turnos++;
         } while (!finMazmorra);
     }
 
 
 
     public void realizarMovimientos(List<Integer> posiblesMovimientos){
+        devWatchMap();
+        //playerMap();
         int accion = 0;
         do {
             //Elegimos a donde nos queremos mover
             accion = sc.nextInt();
         } while (!elegirMovimiento(accion, posiblesMovimientos, xHeroes, yHeroes));
         posicionHeroes();
-        watchMap();
+
     }
 
 
@@ -330,6 +369,10 @@ public class MazmorraFinal {
             case "r":
             System.out.println("Encontraste una habitacion normal");
                 break;
+
+            case "B":
+            enemyRoomEvent();
+                break;
         
             default:
                 break;
@@ -339,15 +382,60 @@ public class MazmorraFinal {
 
     public void treasureRoomEvent(){
         Collections.shuffle(treasureItemList);
-        System.out.println("¡Un cofre!");
+        System.out.println("\n¡Un cofre!");
         System.out.println("Obtuviste: " + treasureItemList.get(0).getNombre() + " x" + treasureItemList.get(0).getCantidad());
         bolsa.addObject(treasureItemList.get(0));
+
+        System.out.println("(1) Confirmar");
+        sc.nextInt();
     }
 
     public void enemyRoomEvent(){
-        System.out.println("Aparece un Enemigo");
+        System.out.println("\nUnos Enemigos te bloquean el Paso");
+        System.out.println("(1) Confirmar\n");
+        sc.nextInt();
+
+        int num = numRandomizer(3, 1);
+
+        switch (num) {
+            case 1:
+            enemyList = new ArrayList<>();
+            enemyList.add(new DuendiLemon("Duendilemon A"));
+            enemyList.add(new DuendiLemon("Duendilemon B"));
+            enemyList.add(new DuendiLemon("Duendilemon C"));
+            combate = new Combate(grupoAliado, enemyList, bolsa, sc);
+            combate.comenzarCombate();
+            break;
+            
+            case 2:
+            enemyList = new ArrayList<>();
+            enemyList.add(new DuendiLemon("Duendilemon A"));
+            enemyList.add(new DuendiLemon("Duendilemon B"));
+            enemyList.add(new DuendiLemon("Duendilemon C"));
+            combate = new Combate(grupoAliado, enemyList, bolsa, sc);
+            combate.comenzarCombate();
+                break;
+
+            case 3:
+            enemyList = new ArrayList<>();
+            enemyList.add(new DuendiLemon("Duendilemon A"));
+            enemyList.add(new DuendiLemon("Duendilemon B"));
+            enemyList.add(new DuendiLemon("Duendilemon C"));
+            combate = new Combate(grupoAliado, enemyList, bolsa, sc);
+            combate.comenzarCombate();
+                break;
+        
+            default:
+                break;
+        }
     }
 
+
+    public void bossRoomEvent(){
+        System.out.println("¡Una imponente figura emerge delante de ti!");
+        sc.nextInt();
+
+    }
 
 
     

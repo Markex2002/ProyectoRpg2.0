@@ -1,3 +1,4 @@
+package Combate;
 import Inventario.Bolsa;
 import Personajes.Enemigo;
 import Personajes.Aliado;
@@ -21,8 +22,8 @@ public class Combate {
 
 
     //CONSTRUCTOR
-    public Combate(List<Aliado> grupoAliado, List<Enemigo> grupoEnemigo, Bolsa bolsa) {
-        sc = new Scanner(System.in);
+    public Combate(List<Aliado> grupoAliado, List<Enemigo> grupoEnemigo, Bolsa bolsa, Scanner sc) {
+        this.sc = sc;
         turno = 0;
         //Inicializamos los datos de este combate
         this.grupoAliado = grupoAliado;
@@ -107,10 +108,6 @@ public class Combate {
             }
             
         }
-
-        //Se acaba el combate y cerramos el Scanner
-        sc.close();
-
 
         //HAY QUE CONTROLAR RECOMPENSAS O DERROTAS
         //NO ES PRIORIDAD AHORA MISMO

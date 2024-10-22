@@ -31,7 +31,7 @@ public class PlumaFenix extends Objeto {
             personaje.setEsta_muerto(false);
             seHaUsado = true;
             cantidad--;
-            System.out.println(personaje.getNombre() + " ha vuelto al combate");
+            System.out.println(personaje.getNombre() + " ha vuelto al combate!\n");
         } else {
             System.out.println("\nEsto no tendría sentido");
         }

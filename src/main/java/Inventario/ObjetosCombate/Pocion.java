@@ -34,7 +34,7 @@ public class Pocion extends Objeto {
             personaje.setPs(personaje.getPs() + psRestaurados);
             seHaUsado = true;
             cantidad--;
-            System.out.println(nombre + " usada");
+            System.out.println(nombre + " usada\n");
         }
         return seHaUsado;
     }

@@ -9,9 +9,12 @@ import Personajes.Clases.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+
         //CREACION DE BOLSA
         Bolsa bolsa = new Bolsa();
 
@@ -43,6 +46,7 @@ public class Main {
         grupo.add(arquero);
         grupo.add(caballero);
 
+        
 
         //CREACIÓN DE GRUPOS ENEMIGOS
         //Este grupo está compuesto por clases que heredan de Enemigo
@@ -64,14 +68,16 @@ public class Main {
 
         //MAZMORRAS//
         //Creamos la mazmorra y metemos a nuestros heroes
-        MazmorraFinal mazmorraFinal = new MazmorraFinal(grupo, bolsa);
-        mazmorraFinal.watchMap();
+        MazmorraFinal mazmorraFinal = new MazmorraFinal(grupo, bolsa, sc);
 
         //Jugamos la Mazmorra
         mazmorraFinal.exploreDungeon();
 
 
+        System.out.println(bolsa.toString());
 
 
+
+        sc.close();
     }
 }
